@@ -28,12 +28,13 @@ class MovieService
             ->get();
     }
 
-    public function updateMovieStatistics($movieId)
+    public function updateMovieStats($movieId, $ticketsSold)
     {
         $movie = Movie::findOrFail($movieId);
-        $movie->total_bookings = $movie->bookings()->count();
+        $movie->tickets_sold += $ticketsSold;
         $movie->save();
         
         Cache::forget('movies');
+        return $movie;
     }
 } 

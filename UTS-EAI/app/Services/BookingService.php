@@ -3,31 +3,41 @@
 namespace App\Services;
 
 use App\Models\Booking;
-use App\Models\Movie;
+use App\Models\Schedule;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
 class BookingService
 {
     protected $movieService;
+    protected $userService;
 
     public function __construct(MovieService $movieService)
     {
         $this->movieService = $movieService;
     }
 
-    public function createBooking($userId, $movieId, $scheduleId, $seats)
+    public function createBooking($userId, $scheduleId, $numberOfTickets)
     {
-        return DB::transaction(function () use ($userId, $movieId, $scheduleId, $seats) {
+        return DB::transaction(function () use ($userId, $scheduleId, $numberOfTickets) {
+            $schedule = Schedule::findOrFail($scheduleId);
+            
+            if ($schedule->available_seats < $numberOfTickets) {
+                throw new \Exception('Not enough seats available');
+            }
+
             $booking = Booking::create([
                 'user_id' => $userId,
-                'movie_id' => $movieId,
                 'schedule_id' => $scheduleId,
-                'seats' => $seats,
+                'number_of_tickets' => $numberOfTickets,
+                'total_price' => $schedule->price * $numberOfTickets,
                 'status' => 'confirmed'
             ]);
 
-            $this->movieService->updateMovieStatistics($movieId);
+            $schedule->decrement('available_seats', $numberOfTickets);
+            
+            // Update movie statistics
+            $this->movieService->updateMovieStats($schedule->movie_id, $numberOfTickets);
 
             return $booking;
         });
@@ -35,7 +45,7 @@ class BookingService
 
     public function getUserBookings($userId)
     {
-        return Booking::with(['movie', 'schedule'])
+        return Booking::with(['schedule.movie', 'user'])
             ->where('user_id', $userId)
             ->orderBy('created_at', 'desc')
             ->get();
@@ -43,7 +53,7 @@ class BookingService
 
     public function getBookingDetails($bookingId)
     {
-        return Booking::with(['movie', 'schedule', 'user'])
+        return Booking::with(['schedule.movie', 'user'])
             ->findOrFail($bookingId);
     }
 } 

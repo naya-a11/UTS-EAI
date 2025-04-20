@@ -6,165 +6,103 @@
     <title>@yield('title', 'Movie Booking System')</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #1a237e;
-            --secondary-color: #283593;
-            --accent-color: #3949ab;
-            --background-color: #f8fafc;
-            --text-color: #1e293b;
-            --card-bg: #ffffff;
-            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --primary-color: #6c5ce7;
+            --secondary-color: #a29bfe;
+            --accent-color: #fd79a8;
+            --background-color: #f8f9fa;
+            --text-color: #2d3436;
         }
 
         body {
             background-color: var(--background-color);
             color: var(--text-color);
-            font-family: 'Poppins', sans-serif;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         .navbar {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            box-shadow: var(--card-shadow);
-            padding: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
         .navbar-brand {
             color: white !important;
-            font-weight: 600;
+            font-weight: bold;
             font-size: 1.5rem;
-            letter-spacing: 0.5px;
         }
 
         .nav-link {
             color: rgba(255,255,255,0.9) !important;
-            font-weight: 500;
-            padding: 0.5rem 1rem !important;
-            border-radius: 8px;
-            transition: all 0.3s ease;
+            transition: color 0.3s ease;
         }
 
         .nav-link:hover {
             color: white !important;
-            background: rgba(255,255,255,0.1);
         }
 
         .card {
-            background: var(--card-bg);
             border: none;
-            border-radius: 16px;
-            box-shadow: var(--card-shadow);
-            transition: all 0.3s ease;
-            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
         }
 
         .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            background-color: var(--primary-color);
             border: none;
-            border-radius: 12px;
-            padding: 0.75rem 1.5rem;
-            font-weight: 500;
-            letter-spacing: 0.5px;
+            border-radius: 25px;
+            padding: 10px 20px;
             transition: all 0.3s ease;
         }
 
         .btn-primary:hover {
+            background-color: var(--secondary-color);
             transform: translateY(-2px);
-            box-shadow: 0 4px 6px -1px rgba(26, 35, 126, 0.3);
         }
 
         .movie-poster {
-            border-radius: 12px;
+            border-radius: 15px;
             overflow: hidden;
-            transition: transform 0.3s ease;
-        }
-
-        .movie-poster:hover {
-            transform: scale(1.05);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
         .schedule-card {
-            background: linear-gradient(135deg, #ffffff, #f8fafc);
-            border-radius: 12px;
-            padding: 1.25rem;
-            margin-bottom: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .schedule-card:hover {
-            transform: translateX(5px);
-            box-shadow: var(--card-shadow);
+            background: linear-gradient(135deg, #ffffff, #f8f9fa);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 15px;
         }
 
         .booking-card {
-            background: var(--card-bg);
-            border-radius: 16px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            box-shadow: var(--card-shadow);
-            transition: all 0.3s ease;
-        }
-
-        .booking-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        }
-
-        .badge {
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-        }
-
-        .badge.bg-primary {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)) !important;
-        }
-
-        .badge.bg-secondary {
-            background: linear-gradient(135deg, var(--accent-color), var(--secondary-color)) !important;
+            background: linear-gradient(135deg, #ffffff, #f8f9fa);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
         }
 
         .alert {
-            border-radius: 12px;
+            border-radius: 15px;
             border: none;
-            box-shadow: var(--card-shadow);
         }
 
-        .container {
-            flex: 1;
-            padding: 2rem 0;
+        .alert-success {
+            background-color: #00b894;
+            color: white;
         }
 
-        .display-4 {
-            font-weight: 700;
-            letter-spacing: -1px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .text-muted {
-            color: #64748b !important;
-        }
-
-        .text-primary {
-            color: var(--primary-color) !important;
+        .alert-danger {
+            background-color: #d63031;
+            color: white;
         }
     </style>
-    @stack('styles')
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark mb-4">
         <div class="container">
             <a class="navbar-brand" href="{{ route('movies.index') }}">
                 <i class="fas fa-film me-2"></i>Movie Booking
@@ -191,9 +129,14 @@
 
     <div class="container">
         @if(session('success'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                {{ session('success') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <div class="alert alert-success">
+                <i class="fas fa-check-circle me-2"></i> {{ session('success') }}
+            </div>
+        @endif
+
+        @if(session('error'))
+            <div class="alert alert-danger">
+                <i class="fas fa-exclamation-circle me-2"></i> {{ session('error') }}
             </div>
         @endif
 
@@ -201,6 +144,5 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    @stack('scripts')
 </body>
 </html> 

@@ -16,7 +16,8 @@ return new class extends Migration
             $table->string('genre');
             $table->string('rating');
             $table->string('poster_url');
-            $table->integer('total_bookings')->default(0);
+            $table->integer('tickets_sold')->default(0);
+            $table->date('release_date');
             $table->timestamps();
         });
     }

@@ -11,11 +11,10 @@ return new class extends Migration
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('movie_id')->constrained()->onDelete('cascade');
             $table->foreignId('schedule_id')->constrained()->onDelete('cascade');
-            $table->json('seats');
-            $table->string('status')->default('pending');
+            $table->integer('number_of_tickets');
             $table->decimal('total_price', 8, 2);
+            $table->string('status')->default('pending');
             $table->timestamps();
         });
     }
