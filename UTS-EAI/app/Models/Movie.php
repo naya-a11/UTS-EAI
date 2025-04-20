@@ -16,7 +16,13 @@ class Movie extends Model
         'genre',
         'rating',
         'poster_url',
-        'total_bookings'
+        'tickets_sold',
+        'release_date'
+    ];
+
+    protected $casts = [
+        'release_date' => 'date',
+        'tickets_sold' => 'integer'
     ];
 
     public function schedules()
@@ -26,6 +32,6 @@ class Movie extends Model
 
     public function bookings()
     {
-        return $this->hasMany(Booking::class);
+        return $this->hasManyThrough(Booking::class, Schedule::class);
     }
 } 

@@ -11,25 +11,20 @@ class Booking extends Model
 
     protected $fillable = [
         'user_id',
-        'movie_id',
         'schedule_id',
-        'seats',
-        'status',
-        'total_price'
+        'number_of_tickets',
+        'total_price',
+        'status'
     ];
 
     protected $casts = [
-        'seats' => 'array',
+        'number_of_tickets' => 'integer',
+        'total_price' => 'decimal:2'
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class);
-    }
-
-    public function movie()
-    {
-        return $this->belongsTo(Movie::class);
     }
 
     public function schedule()
