@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\Auth\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,10 +21,20 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/bookings/{id}', [BookingController::class, 'show'])->name('bookings.show');
 });
 
+Route::get('/login', function () {
+    return view('auth.customer-login');
+})->name('login');
+
 Route::get('/customer/login', function () {
     return view('auth.customer-login');
 })->name('customer.login');
 
+Route::post('/customer/login', [LoginController::class, 'login'])->name('customer.login.submit');
+
 Route::get('/provider/login', function () {
     return view('auth.provider-login');
 })->name('provider.login');
+
+Route::post('/provider/login', [LoginController::class, 'providerLogin'])->name('provider.login.submit');
+
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');

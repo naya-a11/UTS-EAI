@@ -65,7 +65,7 @@
             <button type="submit" class="btn btn-login">Login</button>
         </form>
         <div class="back-link">
-            <a href="{{ route('welcome') }}" class="text-decoration-none">
+            <a href="{{ url('/') }}" class="text-decoration-none">
                 <i class="fas fa-arrow-left"></i> Back to Home
             </a>
         </div>
