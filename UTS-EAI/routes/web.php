@@ -1,15 +1,18 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\CustomerLoginController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [CustomerLoginController::class, 'showLoginForm'])->name('welcome');
+Route::post('/login', [CustomerLoginController::class, 'login'])->name('customer.login.submit');
+Route::post('/logout', [CustomerLoginController::class, 'logout'])->name('customer.logout');
 
-Route::get('/customer/login', function () {
-    return view('auth.customer-login');
-})->name('customer.login');
+// Dashboard route
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
-Route::get('/provider/login', function () {
+// Admin Routes
+Route::get('/admin/login', function () {
     return view('auth.provider-login');
-})->name('provider.login');
+})->name('admin.login');
