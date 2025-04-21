@@ -45,10 +45,14 @@
             border: none;
             border-radius: 15px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        /* Hover animation only for movie cards, not the details card */
+        .movie-card {
             transition: transform 0.3s ease;
         }
 
-        .card:hover {
+        .movie-card:hover {
             transform: translateY(-5px);
         }
 
@@ -76,6 +80,11 @@
             border-radius: 15px;
             padding: 20px;
             margin-bottom: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .schedule-card:hover {
+            transform: translateY(-2px);
         }
 
         .booking-card {
@@ -122,22 +131,6 @@
                             <i class="fas fa-history me-1"></i> History Pembelian
                         </a>
                     </li>
-                    @auth
-                    <li class="nav-item">
-                        <form action="{{ route('logout') }}" method="POST" class="d-inline">
-                            @csrf
-                            <button type="submit" class="nav-link border-0 bg-transparent">
-                                <i class="fas fa-sign-out-alt me-1"></i> Logout
-                            </button>
-                        </form>
-                    </li>
-                    @else
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">
-                            <i class="fas fa-sign-in-alt me-1"></i> Masuk
-                        </a>
-                    </li>
-                    @endauth
                 </ul>
             </div>
         </div>
