@@ -118,15 +118,26 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('bookings.index') }}">
-                            <i class="fas fa-history me-1"></i> History
+                        <a class="nav-link" href="{{ route('history.index') }}">
+                            <i class="fas fa-history me-1"></i> History Pembelian
                         </a>
                     </li>
+                    @auth
+                    <li class="nav-item">
+                        <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                            @csrf
+                            <button type="submit" class="nav-link border-0 bg-transparent">
+                                <i class="fas fa-sign-out-alt me-1"></i> Logout
+                            </button>
+                        </form>
+                    </li>
+                    @else
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('login') }}">
                             <i class="fas fa-sign-in-alt me-1"></i> Masuk
                         </a>
                     </li>
+                    @endauth
                 </ul>
             </div>
         </div>
