@@ -12,3 +12,11 @@ Route::get('/movies', [MovieController::class, 'index'])->name('movies.index');
 Route::get('/history', function () {
     return view('history-cinta.history');
 })->name('history.index');
+
+Route::get('/details', function () {
+    return view('movie_details-fuad.details');
+})->name('movie.details');
+
+Route::get('/booking', function () {
+    return view('movie_details-fuad.booking');
+})->name('movie.booking');
