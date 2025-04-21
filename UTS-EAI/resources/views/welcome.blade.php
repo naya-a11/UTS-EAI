@@ -3,25 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
     <title>Login - EAI Service</title>
     <!-- Bootstrap CSS -->
+=======
+    <title>Welcome to Movie Booking</title>
+>>>>>>> main
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            height: 100vh;
+            background-color: #f8f9fa;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
         }
-        .login-container {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
+        .welcome-container {
+            background: white;
             padding: 2rem;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
             width: 100%;
             max-width: 400px;
+<<<<<<< HEAD
         }
         .form-control {
             border-radius: 8px;
@@ -41,12 +46,13 @@
         .btn-login:hover {
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+=======
+            text-align: center;
+>>>>>>> main
         }
         .title {
-            color: #333;
             margin-bottom: 2rem;
-            text-align: center;
-            font-weight: 600;
+            color: #333;
         }
         .alert {
             border-radius: 8px;
@@ -71,6 +77,7 @@
     </style>
 </head>
 <body>
+<<<<<<< HEAD
     <div class="login-container">
         <h2 class="title">Welcome to EAI Service</h2>
         
@@ -101,12 +108,17 @@
 
         <div class="role-selection">
             <p class="role-text">Are you an admin? <a href="{{ route('admin.login') }}" class="role-link">Login here</a></p>
+=======
+    <div class="welcome-container">
+        <h2 class="title">Welcome to Movie Booking</h2>
+        <div class="d-grid gap-2">
+            <a href="{{ route('movies.index') }}" class="btn btn-primary">
+                <i class="fas fa-film"></i> Browse Movies
+            </a>
+>>>>>>> main
         </div>
     </div>
 
-    <!-- Bootstrap JS and dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Font Awesome for icons -->
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </body>
 </html>
