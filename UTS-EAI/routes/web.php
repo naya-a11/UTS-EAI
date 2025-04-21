@@ -9,6 +9,4 @@ Route::get('/', function () {
 });
 
 Route::get('/movies', [MovieController::class, 'index'])->name('movies.index');
-Route::get('/history', function () {
-    return view('history-cinta.history');
-})->name('history.index');
+Route::get('/history', [HistoryController::class, 'index'])->name('history.index');
