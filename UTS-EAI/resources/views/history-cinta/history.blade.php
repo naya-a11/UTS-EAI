@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to Movie Booking</title>
+    <title>History - Movie Booking</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
@@ -23,7 +23,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('history.index') }}">
+                        <a class="nav-link active" href="{{ route('history.index') }}">
                             <i class="fas fa-history"></i> History
                         </a>
                     </li>
@@ -35,7 +35,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         function handleMoviesClick(event) {
-            // If we're already on the welcome page (root URL)
             if (window.location.pathname === '/') {
                 event.preventDefault();
                 window.location.reload();
@@ -43,4 +42,4 @@
         }
     </script>
 </body>
-</html>
+</html> 

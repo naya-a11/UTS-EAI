@@ -1,47 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-<<<<<<< HEAD
-use App\Http\Controllers\Auth\CustomerLoginController;
-
-Route::get('/', [CustomerLoginController::class, 'showLoginForm'])->name('welcome');
-Route::post('/login', [CustomerLoginController::class, 'login'])->name('customer.login.submit');
-Route::post('/logout', [CustomerLoginController::class, 'logout'])->name('customer.logout');
-
-// Dashboard route
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-
-// Admin Routes
-Route::get('/admin/login', function () {
-    return view('auth.provider-login');
-})->name('admin.login');
-=======
 use App\Http\Controllers\MovieController;
-use App\Http\Controllers\BookingController;
 use App\Http\Controllers\HistoryController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-*/
+Route::get('/', function () {
+    return view('welcome');
+});
 
-Route::get('/', [MovieController::class, 'index'])->name('movies.index');
-Route::get('/movies/{id}', [MovieController::class, 'show'])->name('movies.show');
-
-// Movie details route
-Route::get('/details', function () {
-    return view('movies.details');
-})->name('movies.details');
-
-// History route
-Route::get('/history', [HistoryController::class, 'index'])->name('history.index');
-
-// Booking routes
-Route::get('/bookings', [BookingController::class, 'index'])->name('bookings.index');
-Route::get('/bookings/create/{scheduleId}', [BookingController::class, 'create'])->name('bookings.create');
-Route::post('/bookings', [BookingController::class, 'store'])->name('bookings.store');
-Route::get('/bookings/{id}', [BookingController::class, 'show'])->name('bookings.show');
->>>>>>> main
+Route::get('/movies', [MovieController::class, 'index'])->name('movies.index');
+Route::get('/history', function () {
+    return view('history-cinta.history');
+})->name('history.index');
