@@ -19,25 +19,22 @@ class BookingController extends Controller
 
     public function create($scheduleId)
     {
-        $schedule = $this->movieService->getMovieSchedules($scheduleId)->first();
-        return view('bookings.create', compact('schedule'));
+        return view('bookings.create', ['scheduleId' => $scheduleId]);
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'schedule_id' => 'required|exists:schedules,id',
-            'number_of_tickets' => 'required|integer|min:1'
+            'schedule_id' => 'required',
+            'name' => 'required|string|max:255',
+            'email' => 'required|email',
+            'phone' => 'required|string',
+            'seats' => 'required|integer|min:1|max:10',
+            'payment_method' => 'required|in:credit_card,debit_card,e_wallet'
         ]);
 
         try {
-            $booking = $this->bookingService->createBooking(
-                auth()->id(),
-                $request->schedule_id,
-                $request->number_of_tickets
-            );
-
-            return redirect()->route('bookings.show', $booking->id)
+            return redirect()->route('movies.index')
                 ->with('success', 'Booking created successfully!');
         } catch (\Exception $e) {
             return back()->with('error', $e->getMessage());
