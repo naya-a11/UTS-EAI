@@ -8,10 +8,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <style>
+        body {
+            background-color: #141414;
+            color: white;
+        }
         .booking-container {
-            background-color: #fff;
+            background-color: #1a1a1a;
             border-radius: 15px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
             padding: 2rem;
             margin-top: 2rem;
             margin-bottom: 4rem;
@@ -27,6 +31,7 @@
             margin-bottom: 2rem;
             border-radius: 5px;
             width: 100%;
+            border: 2px solid #e50914;
         }
         .seat {
             width: 35px;
@@ -45,13 +50,14 @@
             color: white;
         }
         .seat.selected {
-            background-color: #007bff;
+            background-color: #e50914;
             color: white;
         }
         .seat.occupied {
-            background-color: #dc3545;
+            background-color: #333;
             color: white;
             cursor: not-allowed;
+            border: 1px solid #666;
         }
         .seat-legend {
             display: flex;
@@ -59,6 +65,7 @@
             gap: 1.5rem;
             margin-bottom: 1rem;
             font-size: 0.9rem;
+            color: white;
         }
         .legend-item {
             display: flex;
@@ -86,6 +93,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            color: white;
         }
         .seats-container {
             display: flex;
@@ -93,12 +101,79 @@
             align-items: center;
             margin-top: 2rem;
         }
+<<<<<<< Updated upstream
+        .back-btn {
+            background-color: transparent;
+            color: #e50914;
+            border: 2px solid #e50914;
+            padding: 8px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .back-btn:hover {
+            background-color: #e50914;
+            color: white;
+        }
+        .card {
+            background-color: #1f1f1f;
+            border: none;
+            border-radius: 10px;
+        }
+        .card-body {
+            color: white;
+        }
+        .card-title {
+            color: white;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+        }
+        .proceed-btn {
+            background-color: #e50914;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            width: 100%;
+            transition: all 0.3s;
+        }
+        .proceed-btn:hover {
+            background-color: #ff0f1f;
+            color: white;
+=======
+        .btn-primary {
+            background-color: #e50914;
+            border-color: #e50914;
+        }
+        .btn-primary:hover {
+            background-color: #ff0f1f;
+            border-color: #ff0f1f;
+        }
+        .btn-outline-dark {
+            color: white;
+            border-color: #333;
+        }
+        .btn-outline-dark:hover {
+            background-color: #333;
+            color: white;
+        }
+        .card {
+            background-color: #1a1a1a;
+            border-color: #333;
+        }
+        .card-title, .card-body h6 {
+            color: white;
+        }
+        .card-body {
+            color: #999;
+>>>>>>> Stashed changes
+        }
     </style>
 </head>
-<body class="bg-light">
+<body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/">Movie Booking</a>
+            <a class="navbar-brand" href="/">Moononton</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -122,7 +197,7 @@
     <div class="container-fluid">
         <div class="booking-container">
             <div class="mb-4">
-                <a href="{{ route('movie.details') }}" class="btn btn-outline-dark">
+                <a href="{{ route('movie.details') }}" class="back-btn">
                     <i class="fas fa-arrow-left me-2"></i>Back to Movie Details
                 </a>
             </div>
@@ -179,7 +254,7 @@
                             <div class="mb-3">
                                 <h6>Total Price: <span id="total-price">$0</span></h6>
                             </div>
-                            <button class="btn btn-primary w-100" id="proceed-payment">
+                            <button class="proceed-btn" id="proceed-payment">
                                 Proceed to Payment
                             </button>
                         </div>
