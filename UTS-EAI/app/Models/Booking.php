@@ -10,10 +10,13 @@ class Booking extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
         'schedule_id',
-        'number_of_tickets',
-        'total_price',
+        'movie_id',
+        'name',
+        'email',
+        'phone',
+        'seats',
+        'payment_method',
         'status'
     ];
 
@@ -30,5 +33,10 @@ class Booking extends Model
     public function schedule()
     {
         return $this->belongsTo(Schedule::class);
+    }
+
+    public function movie()
+    {
+        return $this->belongsTo(Movie::class);
     }
 } 
