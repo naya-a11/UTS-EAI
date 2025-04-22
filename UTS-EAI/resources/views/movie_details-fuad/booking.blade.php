@@ -178,7 +178,7 @@
     <div class="container-fluid">
         <div class="booking-container">
             <div class="mb-4">
-                <a href="{{ route('movie.details') }}" class="back-btn">
+                <a href="/details/{{ $movieId }}" class="back-btn">
                     <i class="fas fa-arrow-left me-2"></i>Back to Movie Details
                 </a>
             </div>
@@ -252,8 +252,62 @@
             const seats = document.querySelectorAll('.seat');
             const selectedSeatsContainer = document.getElementById('selected-seats');
             const totalPriceElement = document.getElementById('total-price');
+            const movieTitleElement = document.getElementById('movie-title');
             let selectedSeats = [];
             const seatPrice = 10; // Price per seat
+
+            // Get movie ID from URL
+            const pathParts = window.location.pathname.split('/');
+            const movieId = pathParts[pathParts.length - 1];
+
+            // Movie data mapping
+            const movies = {
+                'NS001': {
+                    title: 'Pabrik Gula',
+                    poster: '{{ asset("images/movies/pabrik-gula.jpg") }}',
+                    rating: 4.0,
+                    genres: ['Horror'],
+                    duration: '1h 45min',
+                    releaseDate: 'May 1, 2024',
+                    ageRating: 'R',
+                    synopsis: 'Di sebuah pabrik gula tua yang sudah lama ditinggalkan, sekelompok remaja memutuskan untuk menghabiskan malam mereka. Namun, mereka tidak menyadari bahwa pabrik tersebut menyimpan rahasia mengerikan.'
+                },
+                'NS002': {
+                    title: 'Jumbo',
+                    poster: '{{ asset("images/movies/jumbo.jpg") }}',
+                    rating: 5.0,
+                    genres: ['Animation', 'Adventure'],
+                    duration: '1h 30min',
+                    releaseDate: 'May 15, 2024',
+                    ageRating: 'PG',
+                    synopsis: 'Don (Prince Poetiray), anak gemuk yang sering diolok-olok dengan panggilan "Jumbo" ingin membalas perbuatan anak yang suka merundungnya.'
+                },
+                'NS003': {
+                    title: 'Sinners',
+                    poster: '{{ asset("images/movies/sinners.jpg") }}',
+                    rating: 4.5,
+                    genres: ['Thriller', 'Horror'],
+                    duration: '2h 15min',
+                    releaseDate: 'June 1, 2024',
+                    ageRating: 'R',
+                    synopsis: 'Sebuah tim investigasi paranormal dipanggil untuk menyelidiki serangkaian kematian misterius di sebuah kota kecil.'
+                },
+                'NS004': {
+                    title: 'Minecraft',
+                    poster: '{{ asset("images/movies/minecraft.jpg") }}',
+                    rating: 4.5,
+                    genres: ['Action', 'Adventure'],
+                    duration: '2h 30min',
+                    releaseDate: 'June 15, 2024',
+                    ageRating: 'PG-13',
+                    synopsis: 'Steve, seorang pemain Minecraft yang terobsesi dengan permainan, secara tidak sengaja terhisap ke dalam dunia Minecraft.'
+                }
+            };
+
+            // Update movie title
+            if (movies[movieId]) {
+                movieTitleElement.textContent = movies[movieId].title;
+            }
 
             seats.forEach(seat => {
                 if (!seat.classList.contains('occupied')) {

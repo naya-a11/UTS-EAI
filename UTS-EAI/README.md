@@ -59,3 +59,151 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+# Todo API Documentation
+
+This API provides endpoints to manage todo items. All responses are in JSON format.
+
+## Base URL
+```
+http://localhost:8000/api
+```
+
+## Endpoints
+
+### List all todos
+```http
+GET /todos
+```
+
+Response:
+```json
+{
+    "status": "success",
+    "data": [
+        {
+            "id": 1,
+            "title": "Complete project",
+            "description": "Finish the API implementation",
+            "status": "pending",
+            "created_at": "2024-04-22T10:00:00.000000Z",
+            "updated_at": "2024-04-22T10:00:00.000000Z"
+        }
+    ]
+}
+```
+
+### Create a new todo
+```http
+POST /todos
+```
+
+Request body:
+```json
+{
+    "title": "Complete project",
+    "description": "Finish the API implementation",
+    "status": "pending"
+}
+```
+
+Response:
+```json
+{
+    "status": "success",
+    "message": "Todo created successfully",
+    "data": {
+        "id": 1,
+        "title": "Complete project",
+        "description": "Finish the API implementation",
+        "status": "pending",
+        "created_at": "2024-04-22T10:00:00.000000Z",
+        "updated_at": "2024-04-22T10:00:00.000000Z"
+    }
+}
+```
+
+### Get a specific todo
+```http
+GET /todos/{id}
+```
+
+Response:
+```json
+{
+    "status": "success",
+    "data": {
+        "id": 1,
+        "title": "Complete project",
+        "description": "Finish the API implementation",
+        "status": "pending",
+        "created_at": "2024-04-22T10:00:00.000000Z",
+        "updated_at": "2024-04-22T10:00:00.000000Z"
+    }
+}
+```
+
+### Update a todo
+```http
+PUT /todos/{id}
+```
+
+Request body:
+```json
+{
+    "title": "Updated title",
+    "description": "Updated description",
+    "status": "completed"
+}
+```
+
+Response:
+```json
+{
+    "status": "success",
+    "message": "Todo updated successfully",
+    "data": {
+        "id": 1,
+        "title": "Updated title",
+        "description": "Updated description",
+        "status": "completed",
+        "created_at": "2024-04-22T10:00:00.000000Z",
+        "updated_at": "2024-04-22T10:00:00.000000Z"
+    }
+}
+```
+
+### Delete a todo
+```http
+DELETE /todos/{id}
+```
+
+Response:
+```json
+{
+    "status": "success",
+    "message": "Todo deleted successfully"
+}
+```
+
+## Error Responses
+
+When an error occurs, the API will return an appropriate HTTP status code and a JSON response with error details:
+
+```json
+{
+    "message": "The given data was invalid.",
+    "errors": {
+        "title": [
+            "The title field is required."
+        ]
+    }
+}
+```
+
+Common HTTP status codes:
+- 200: Success
+- 201: Created
+- 404: Not Found
+- 422: Validation Error
+- 500: Server Error

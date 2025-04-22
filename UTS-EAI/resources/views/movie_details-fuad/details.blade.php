@@ -172,7 +172,7 @@
     <div class="container">
         <div class="movie-details">
             <div class="mb-4">
-                <a href="/" class="back-btn">
+                <a href="#" class="back-btn" onclick="handleBackClick(event)">
                     <i class="fas fa-arrow-left me-2"></i>Back to Movies
                 </a>
             </div>
@@ -180,11 +180,11 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="poster-container">
-                        <img src="https://m.media-amazon.com/images/M/MV5BNzQzOTk3OTAtNDQ0Zi00ZTVkLWI0MTEtMDllZjNkYzNjNTc4L2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_.jpg" alt="Movie Poster" class="img-fluid">
+                        <img id="moviePoster" src="" alt="Movie Poster" class="img-fluid">
                     </div>
                     <div class="mt-4 text-center">
                         <div class="d-grid">
-                            <a href="{{ route('movie.booking') }}" class="book-now-btn">
+                            <a href="{{ route('movie.booking', ['id' => $movieId]) }}" id="bookNowBtn" class="book-now-btn">
                                 <i class="fas fa-ticket-alt me-2"></i>Book Tickets
                             </a>
                         </div>
@@ -192,85 +192,31 @@
                 </div>
                 <div class="col-md-8">
                     <div class="title-rating">
-                        <h1 class="display-4 mb-3">Movie Title</h1>
-                        <div class="rating-circle">8.5</div>
+                        <h1 class="display-4 mb-3" id="movieTitle">Loading...</h1>
+                        <div class="rating-circle" id="movieRating">0.0</div>
                     </div>
-                    <div class="mb-4">
-                        <span class="badge bg-dark me-2">Action</span>
-                        <span class="badge bg-dark me-2">Adventure</span>
-                        <span class="badge bg-dark me-2">Sci-Fi</span>
+                    <div class="mb-4" id="movieGenres">
+                        <!-- Genres will be populated here -->
                     </div>
                     <div class="detail-section">
                         <div class="row mb-3">
                             <div class="col-md-4">
                                 <small class="text-muted">Duration</small>
-                                <p class="mb-0"><i class="fas fa-clock me-2"></i>2h 30min</p>
+                                <p class="mb-0"><i class="fas fa-clock me-2"></i><span id="movieDuration">Loading...</span></p>
                             </div>
                             <div class="col-md-4">
                                 <small class="text-muted">Release Date</small>
-                                <p class="mb-0"><i class="fas fa-calendar me-2"></i>Jan 1, 2024</p>
+                                <p class="mb-0"><i class="fas fa-calendar me-2"></i><span id="movieReleaseDate">Loading...</span></p>
                             </div>
                             <div class="col-md-4">
                                 <small class="text-muted">Rating</small>
-                                <p class="mb-0"><i class="fas fa-star me-2"></i>PG-13</p>
+                                <p class="mb-0"><i class="fas fa-star me-2"></i><span id="movieAgeRating">Loading...</span></p>
                             </div>
                         </div>
                     </div>
                     <div class="mb-4">
                         <h5 class="border-bottom pb-2">Synopsis</h5>
-                        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="detail-section">
-                                <h5 class="mb-3">Cast</h5>
-                                <div class="list-group">
-                                    <a href="#" class="list-group-item list-group-item-action">
-                                        <div class="d-flex w-100 justify-content-between">
-                                            <h6 class="mb-1">Actor Name 1</h6>
-                                            <small>Lead Role</small>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="list-group-item list-group-item-action">
-                                        <div class="d-flex w-100 justify-content-between">
-                                            <h6 class="mb-1">Actor Name 2</h6>
-                                            <small>Supporting</small>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="list-group-item list-group-item-action">
-                                        <div class="d-flex w-100 justify-content-between">
-                                            <h6 class="mb-1">Actor Name 3</h6>
-                                            <small>Supporting</small>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="detail-section">
-                                <h5 class="mb-3">Crew</h5>
-                                <div class="list-group">
-                                    <div class="list-group-item">
-                                        <div class="d-flex w-100 justify-content-between">
-                                            <h6 class="mb-1">Director</h6>
-                                            <span>John Doe</span>
-                                        </div>
-                                    </div>
-                                    <div class="list-group-item">
-                                        <div class="d-flex w-100 justify-content-between">
-                                            <h6 class="mb-1">Writer</h6>
-                                            <span>Jane Smith</span>
-                                        </div>
-                                    </div>
-                                    <div class="list-group-item">
-                                        <div class="d-flex w-100 justify-content-between">
-                                            <h6 class="mb-1">Producer</h6>
-                                            <span>Mike Johnson</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <p class="lead" id="movieSynopsis">Loading...</p>
                     </div>
                 </div>
             </div>
@@ -285,6 +231,122 @@
                 event.preventDefault();
                 window.location.reload();
             }
+        }
+
+        function handleBackClick(event) {
+            event.preventDefault();
+            const movieId = '{{ $movieId }}';
+            
+            // Get the previous page from session storage or default to home
+            const previousPage = sessionStorage.getItem('previousPage') || '/';
+            
+            // If coming from booking page, go to home page
+            if (previousPage.includes('/booking/')) {
+                window.location.href = '/';
+                return;
+            }
+            
+            if (previousPage.includes('/view-all-movies')) {
+                // If coming from view all page, include the tab parameter
+                const tab = previousPage.includes('coming-soon') ? 'coming-soon' : 'now-showing';
+                window.location.href = `/view-all-movies/${tab}?movieId=${movieId}`;
+            } else {
+                // For home page or other pages
+                window.location.href = previousPage;
+            }
+        }
+
+        // Store the current page as the previous page when details page loads
+        window.onload = function() {
+            // Only store the previous page if it's not the booking page
+            const previousPage = document.referrer;
+            if (!previousPage.includes('/booking/')) {
+                sessionStorage.setItem('previousPage', previousPage);
+            }
+        };
+
+        // Get movie ID from route parameter
+        const movieId = '{{ $movieId }}';
+
+        // Movie data mapping
+        const movies = {
+            'NS001': {
+                title: 'Pabrik Gula',
+                poster: '{{ asset("images/movies/pabrik-gula.jpg") }}',
+                rating: 4.0,
+                genres: ['Horror'],
+                duration: '1h 45min',
+                releaseDate: 'May 1, 2024',
+                ageRating: 'R',
+                synopsis: 'Di sebuah pabrik gula tua yang sudah lama ditinggalkan, sekelompok remaja memutuskan untuk menghabiskan malam mereka. Namun, mereka tidak menyadari bahwa pabrik tersebut menyimpan rahasia mengerikan.'
+            },
+            'NS002': {
+                title: 'Jumbo',
+                poster: '{{ asset("images/movies/jumbo.jpg") }}',
+                rating: 5.0,
+                genres: ['Animation', 'Adventure'],
+                duration: '1h 30min',
+                releaseDate: 'May 15, 2024',
+                ageRating: 'PG',
+                synopsis: 'Don (Prince Poetiray), anak gemuk yang sering diolok-olok dengan panggilan "Jumbo" ingin membalas perbuatan anak yang suka merundungnya.'
+            },
+            'NS003': {
+                title: 'Sinners',
+                poster: '{{ asset("images/movies/sinners.jpg") }}',
+                rating: 4.5,
+                genres: ['Thriller', 'Horror'],
+                duration: '2h 15min',
+                releaseDate: 'June 1, 2024',
+                ageRating: 'R',
+                synopsis: 'Sebuah tim investigasi paranormal dipanggil untuk menyelidiki serangkaian kematian misterius di sebuah kota kecil.'
+            },
+            'NS004': {
+                title: 'Minecraft',
+                poster: '{{ asset("images/movies/minecraft.jpg") }}',
+                rating: 4.5,
+                genres: ['Action', 'Adventure'],
+                duration: '2h 30min',
+                releaseDate: 'June 15, 2024',
+                ageRating: 'PG-13',
+                synopsis: 'Steve, seorang pemain Minecraft yang terobsesi dengan permainan, secara tidak sengaja terhisap ke dalam dunia Minecraft.'
+            }
+        };
+
+        // Function to update movie details
+        function updateMovieDetails(movieId) {
+            const movie = movies[movieId];
+            if (!movie) {
+                // Handle case when movie is not found
+                document.getElementById('movieTitle').textContent = 'Movie Not Found';
+                return;
+            }
+
+            // Update basic information
+            document.getElementById('movieTitle').textContent = movie.title;
+            document.getElementById('moviePoster').src = movie.poster;
+            document.getElementById('movieRating').textContent = movie.rating;
+            document.getElementById('movieDuration').textContent = movie.duration;
+            document.getElementById('movieReleaseDate').textContent = movie.releaseDate;
+            document.getElementById('movieAgeRating').textContent = movie.ageRating;
+            document.getElementById('movieSynopsis').textContent = movie.synopsis;
+
+            // Update genres
+            const genresContainer = document.getElementById('movieGenres');
+            genresContainer.innerHTML = movie.genres.map(genre => 
+                `<span class="badge bg-dark me-2">${genre}</span>`
+            ).join('');
+
+            // Update book now button
+            const bookNowBtn = document.getElementById('bookNowBtn');
+            bookNowBtn.href = `/booking/${movieId}`;
+        }
+
+        // Initialize movie details when page loads
+        if (movieId) {
+            updateMovieDetails(movieId);
+        } else {
+            // Handle case when no movie ID is provided
+            document.getElementById('movieTitle').textContent = 'No Movie Selected';
         }
     </script>
 </body>

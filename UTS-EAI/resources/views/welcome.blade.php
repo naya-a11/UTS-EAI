@@ -172,7 +172,7 @@
                     <div class="carousel-caption text-start">
                         <h1>Pabrik Gula</h1>
                         <p>Sebuah kisah horor mencekam yang akan membuat Anda tegang sepanjang film.</p>
-                        <p><a class="book-now-btn" href="{{ route('movie.details') }}">Book Now</a></p>
+                        <p><a class="book-now-btn" href="#" onclick="bookMovie('NS001')">Book Now</a></p>
                     </div>
                 </div>
             </div>
@@ -181,7 +181,7 @@
                     <div class="carousel-caption">
                         <h1>Jumbo</h1>
                         <p>Petualangan animasi yang mengharukan dan penuh keajaiban.</p>
-                        <p><a class="book-now-btn" href="{{ route('movie.details') }}">Book Now</a></p>
+                        <p><a class="book-now-btn" href="#" onclick="bookMovie('NS002')">Book Now</a></p>
                     </div>
                 </div>
             </div>
@@ -190,7 +190,7 @@
                     <div class="carousel-caption">
                         <h1>Sinners</h1>
                         <p>From Ryan Coogler, director of Black Panther and Creed comes an epic thriller.</p>
-                        <p><a class="book-now-btn" href="{{ route('movie.details') }}">Book Now</a></p>
+                        <p><a class="book-now-btn" href="#" onclick="bookMovie('NS003')">Book Now</a></p>
                     </div>
                 </div>
             </div>
@@ -199,7 +199,7 @@
                     <div class="carousel-caption text-end">
                         <h1>Minecraft</h1>
                         <p>Petualangan epik dalam dunia blocks yang penuh aksi.</p>
-                        <p><a class="book-now-btn" href="{{ route('movie.details') }}">Book Now</a></p>
+                        <p><a class="book-now-btn" href="#" onclick="bookMovie('NS004')">Book Now</a></p>
                     </div>
                 </div>
             </div>
@@ -238,7 +238,7 @@
                                 <i class="fas fa-star"></i>
                                 <i class="far fa-star"></i>
                             </div>
-                            <a href="{{ route('movie.details') }}" class="book-now-btn w-100 text-center">Book Now</a>
+                            <a href="{{ route('movie.details', ['id' => 'NS001']) }}" class="book-now-btn w-100 text-center">Book Now</a>
                         </div>
                     </div>
                 </div>
@@ -258,7 +258,7 @@
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
                             </div>
-                            <a href="{{ route('movie.details') }}" class="book-now-btn w-100 text-center">Book Now</a>
+                            <a href="{{ route('movie.details', ['id' => 'NS002']) }}" class="book-now-btn w-100 text-center">Book Now</a>
                         </div>
                     </div>
                 </div>
@@ -278,7 +278,7 @@
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star-half-alt"></i>
                             </div>
-                            <a href="{{ route('movie.details') }}" class="book-now-btn w-100 text-center">Book Now</a>
+                            <a href="{{ route('movie.details', ['id' => 'NS003']) }}" class="book-now-btn w-100 text-center">Book Now</a>
                         </div>
                     </div>
                 </div>
@@ -298,7 +298,7 @@
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star-half-alt"></i>
                             </div>
-                            <a href="{{ route('movie.details') }}" class="book-now-btn w-100 text-center">Book Now</a>
+                            <a href="{{ route('movie.details', ['id' => 'NS004']) }}" class="book-now-btn w-100 text-center">Book Now</a>
                         </div>
                     </div>
                 </div>
@@ -325,7 +325,7 @@
                             <a href="#" class="movie-title">Perang Kota</a>
                             <div class="release-date">Release: June 15, 2024</div>
                             <div class="movie-genre">Drama, War</div>
-                            <a href="{{ route('movie.details') }}" class="book-now-btn w-100 text-center">Pre-Book Now</a>
+                            <a href="{{ route('movie.details', ['id' => 'CS001']) }}" class="book-now-btn w-100 text-center">Pre-Book Now</a>
                         </div>
                     </div>
                 </div>
@@ -340,7 +340,7 @@
                             <a href="#" class="movie-title">Panor</a>
                             <div class="release-date">Release: July 1, 2024</div>
                             <div class="movie-genre">Horror</div>
-                            <a href="{{ route('movie.details') }}" class="book-now-btn w-100 text-center">Pre-Book Now</a>
+                            <a href="{{ route('movie.details', ['id' => 'CS002']) }}" class="book-now-btn w-100 text-center">Pre-Book Now</a>
                         </div>
                     </div>
                 </div>
@@ -355,7 +355,7 @@
                             <a href="#" class="movie-title">Sayap-sayap Patah 2</a>
                             <div class="release-date">Release: July 15, 2024</div>
                             <div class="movie-genre">Drama, Action</div>
-                            <a href="{{ route('movie.details') }}" class="book-now-btn w-100 text-center">Pre-Book Now</a>
+                            <a href="{{ route('movie.details', ['id' => 'CS003']) }}" class="book-now-btn w-100 text-center">Pre-Book Now</a>
                         </div>
                     </div>
                 </div>
@@ -370,7 +370,7 @@
                             <a href="#" class="movie-title">Final Destination Bloodlines</a>
                             <div class="release-date">Release: August 15, 2024</div>
                             <div class="movie-genre">Thriller</div>
-                            <a href="{{ route('movie.details') }}" class="book-now-btn w-100 text-center">Pre-Book Now</a>
+                            <a href="{{ route('movie.details', ['id' => 'CS004']) }}" class="book-now-btn w-100 text-center">Pre-Book Now</a>
                         </div>
                     </div>
                 </div>
@@ -385,6 +385,10 @@
                 event.preventDefault();
                 window.location.reload();
             }
+        }
+
+        function bookMovie(movieId) {
+            window.location.href = `/details/${movieId}`;
         }
     </script>
 </body>

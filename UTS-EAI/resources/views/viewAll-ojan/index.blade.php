@@ -224,7 +224,7 @@
                                 <i class="fas fa-star"></i>
                                 <i class="far fa-star"></i>
                             </div>
-                            <button class="book-btn">Book Now</button>
+                            <button class="book-btn" onclick="bookMovie('NS001')">Book Now</button>
                         </div>
                     </div>
 
@@ -243,7 +243,7 @@
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
                             </div>
-                            <button class="book-btn">Book Now</button>
+                            <button class="book-btn" onclick="bookMovie('NS002')">Book Now</button>
                         </div>
                     </div>
 
@@ -262,7 +262,7 @@
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star-half-alt"></i>
                             </div>
-                            <button class="book-btn">Book Now</button>
+                            <button class="book-btn" onclick="bookMovie('NS003')">Book Now</button>
                         </div>
                     </div>
 
@@ -281,7 +281,7 @@
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star-half-alt"></i>
                             </div>
-                            <button class="book-btn">Book Now</button>
+                            <button class="book-btn" onclick="bookMovie('NS004')">Book Now</button>
                         </div>
                     </div>
                 </div>
@@ -300,7 +300,7 @@
                             <h3 class="movie-title">Perang Kota</h3>
                             <div class="release-date">Release: June 15, 2024</div>
                             <div class="movie-genre">Drama, War</div>
-                            <button class="book-btn">Pre-Book Now</button>
+                            <button class="book-btn" onclick="bookMovie('CS001')">Pre-Book Now</button>
                         </div>
                     </div>
 
@@ -314,7 +314,7 @@
                             <h3 class="movie-title">Panor</h3>
                             <div class="release-date">Release: July 1, 2024</div>
                             <div class="movie-genre">Horror</div>
-                            <button class="book-btn">Pre-Book Now</button>
+                            <button class="book-btn" onclick="bookMovie('CS002')">Pre-Book Now</button>
                         </div>
                     </div>
 
@@ -328,7 +328,7 @@
                             <h3 class="movie-title">Sayap-sayap Patah 2</h3>
                             <div class="release-date">Release: July 15, 2024</div>
                             <div class="movie-genre">Drama, Action</div>
-                            <button class="book-btn">Pre-Book Now</button>
+                            <button class="book-btn" onclick="bookMovie('CS003')">Pre-Book Now</button>
                         </div>
                     </div>
 
@@ -342,7 +342,7 @@
                             <h3 class="movie-title">Final Destination Bloodlines</h3>
                             <div class="release-date">Release: August 15, 2024</div>
                             <div class="movie-genre">Thriller</div>
-                            <button class="book-btn">Pre-Book Now</button>
+                            <button class="book-btn" onclick="bookMovie('CS004')">Pre-Book Now</button>
                         </div>
                     </div>
                 </div>
@@ -351,5 +351,10 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function bookMovie(movieId) {
+            window.location.href = `/details/${movieId}`;
+        }
+    </script>
 </body>
 </html> 

@@ -22,12 +22,12 @@ Route::get('/', function () {
 Route::get('/movies', [MovieController::class, 'index'])->name('movies.index');
 Route::get('/history', [HistoryController::class, 'index'])->name('history.index');
 
-Route::get('/details', function () {
-    return view('movie_details-fuad.details');
+Route::get('/details/{id?}', function ($id = null) {
+    return view('movie_details-fuad.details', ['movieId' => $id]);
 })->name('movie.details');
 
-Route::get('/booking', function () {
-    return view('movie_details-fuad.booking');
+Route::get('/booking/{id?}', function ($id = null) {
+    return view('movie_details-fuad.booking', ['movieId' => $id]);
 })->name('movie.booking');
 
 Route::get('/view-all-movies/{tab?}', function ($tab = 'now-showing') {
@@ -35,19 +35,6 @@ Route::get('/view-all-movies/{tab?}', function ($tab = 'now-showing') {
 })->name('movies.view-all');
 
 // Test route
-Route::get('/test-web', function () {
-    return response()->json([
-        'message' => 'Web route is working!',
-        'status' => 'success'
-    ]);
-});
-
-// API Test route
-Route::get('/api-test', function () {
-    return view('api-test');
-});
-
-// Add this new route before your existing routes
 Route::get('/test-route', function () {
     return 'Basic routing is working!';
 });
