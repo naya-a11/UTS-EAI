@@ -51,11 +51,7 @@
             gap: 1rem;
         }
         .detail-section {
-<<<<<<< Updated upstream
-            background-color: #1f1f1f;
-=======
             background-color: #0a0a0a;
->>>>>>> Stashed changes
             border-radius: 10px;
             padding: 1.5rem;
             margin-bottom: 1.5rem;
@@ -95,7 +91,6 @@
         .footer-space {
             height: 60px;
         }
-<<<<<<< Updated upstream
         .book-now-btn {
             background-color: #e50914;
             color: white;
@@ -141,14 +136,12 @@
         }
         .border-bottom {
             border-color: #333 !important;
-=======
         .movie-title {
             color: white;
             text-decoration: none;
         }
         .movie-title:hover {
             color: #e50914;
->>>>>>> Stashed changes
         }
     </style>
 </head>
@@ -203,15 +196,9 @@
                         <div class="rating-circle">8.5</div>
                     </div>
                     <div class="mb-4">
-<<<<<<< Updated upstream
-                        <span class="badge me-2">Action</span>
-                        <span class="badge me-2">Adventure</span>
-                        <span class="badge me-2">Sci-Fi</span>
-=======
                         <span class="badge bg-dark me-2">Action</span>
                         <span class="badge bg-dark me-2">Adventure</span>
                         <span class="badge bg-dark me-2">Sci-Fi</span>
->>>>>>> Stashed changes
                     </div>
                     <div class="detail-section">
                         <div class="row mb-3">
