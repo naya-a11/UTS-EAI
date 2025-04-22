@@ -8,10 +8,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <style>
+        body {
+            background-color: #141414;
+            color: white;
+        }
         .movie-details {
-            background-color: #fff;
+            background-color: #1a1a1a;
             border-radius: 15px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
             padding: 2rem;
             margin-top: 2rem;
             margin-bottom: 4rem;
@@ -20,7 +24,7 @@
             position: relative;
             overflow: hidden;
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
         .poster-container img {
             width: 100%;
@@ -31,7 +35,7 @@
             width: 45px;
             height: 45px;
             border-radius: 50%;
-            background-color: #28a745;
+            background-color: #e50914;
             color: white;
             display: inline-flex;
             align-items: center;
@@ -47,20 +51,111 @@
             gap: 1rem;
         }
         .detail-section {
-            background-color: #f8f9fa;
+<<<<<<< Updated upstream
+            background-color: #1f1f1f;
+=======
+            background-color: #0a0a0a;
+>>>>>>> Stashed changes
             border-radius: 10px;
             padding: 1.5rem;
             margin-bottom: 1.5rem;
+            color: white;
+        }
+        .btn-primary {
+            background-color: #e50914;
+            border-color: #e50914;
+        }
+        .btn-primary:hover {
+            background-color: #ff0f1f;
+            border-color: #ff0f1f;
+        }
+        .btn-outline-dark {
+            color: white;
+            border-color: #333;
+        }
+        .btn-outline-dark:hover {
+            background-color: #333;
+            color: white;
+        }
+        .badge {
+            background-color: #333;
+            color: white;
+        }
+        .text-muted {
+            color: #999 !important;
+        }
+        .list-group-item {
+            background-color: #1a1a1a;
+            border-color: #333;
+            color: white;
+        }
+        .list-group-item:hover {
+            background-color: #333;
         }
         .footer-space {
             height: 60px;
         }
+<<<<<<< Updated upstream
+        .book-now-btn {
+            background-color: #e50914;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: all 0.3s;
+            border: none;
+            width: 100%;
+            text-align: center;
+        }
+        .book-now-btn:hover {
+            background-color: #ff0f1f;
+            color: white;
+        }
+        .back-btn {
+            background-color: transparent;
+            color: #e50914;
+            border: 2px solid #e50914;
+            padding: 8px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .back-btn:hover {
+            background-color: #e50914;
+            color: white;
+        }
+        .badge {
+            background-color: #e50914;
+            color: white;
+        }
+        .text-muted {
+            color: #999 !important;
+        }
+        .list-group-item {
+            background-color: #1f1f1f;
+            border-color: #333;
+            color: white;
+        }
+        .list-group-item:hover {
+            background-color: #2a2a2a;
+        }
+        .border-bottom {
+            border-color: #333 !important;
+=======
+        .movie-title {
+            color: white;
+            text-decoration: none;
+        }
+        .movie-title:hover {
+            color: #e50914;
+>>>>>>> Stashed changes
+        }
     </style>
 </head>
-<body class="bg-light">
+<body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/">Movie Booking</a>
+            <a class="navbar-brand" href="/">Moononton</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -84,7 +179,7 @@
     <div class="container">
         <div class="movie-details">
             <div class="mb-4">
-                <a href="/" class="btn btn-outline-dark">
+                <a href="/" class="back-btn">
                     <i class="fas fa-arrow-left me-2"></i>Back to Movies
                 </a>
             </div>
@@ -96,7 +191,7 @@
                     </div>
                     <div class="mt-4 text-center">
                         <div class="d-grid">
-                            <a href="{{ route('movie.booking') }}" class="btn btn-primary btn-lg">
+                            <a href="{{ route('movie.booking') }}" class="book-now-btn">
                                 <i class="fas fa-ticket-alt me-2"></i>Book Tickets
                             </a>
                         </div>
@@ -108,9 +203,15 @@
                         <div class="rating-circle">8.5</div>
                     </div>
                     <div class="mb-4">
-                        <span class="badge bg-primary me-2">Action</span>
-                        <span class="badge bg-secondary me-2">Adventure</span>
-                        <span class="badge bg-info me-2">Sci-Fi</span>
+<<<<<<< Updated upstream
+                        <span class="badge me-2">Action</span>
+                        <span class="badge me-2">Adventure</span>
+                        <span class="badge me-2">Sci-Fi</span>
+=======
+                        <span class="badge bg-dark me-2">Action</span>
+                        <span class="badge bg-dark me-2">Adventure</span>
+                        <span class="badge bg-dark me-2">Sci-Fi</span>
+>>>>>>> Stashed changes
                     </div>
                     <div class="detail-section">
                         <div class="row mb-3">
