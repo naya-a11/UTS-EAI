@@ -20,3 +20,8 @@ Route::get('/details', function () {
 Route::get('/booking', function () {
     return view('movie_details-fuad.booking');
 })->name('movie.booking');
+Route::get('/view-all-movies/{tab?}', function ($tab = 'now-showing') {
+    return view('viewAll-ojan.index', ['activeTab' => $tab]);
+})->name('movies.view-all');
+
+
