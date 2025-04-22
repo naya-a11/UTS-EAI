@@ -15,6 +15,7 @@ class HistoryController extends Controller
         $orders = $this->getDummyData();
 
         return view('history-cinta.history', ['orders' => $orders]);
+
     }
     
     private function mapStatus($status)
@@ -28,6 +29,7 @@ class HistoryController extends Controller
         ];
         
         return $statusMap[$status] ?? 'pending';
+      
     }
     
     private function getDummyData()
@@ -46,11 +48,9 @@ class HistoryController extends Controller
                 'screening_time' => '19:00',
                 'ticket_count' => 2,
                 'total_price' => 120000,
-                'status' => 'pending',
                 'created_at' => $now->copy()->subHours(2),
                 'cinema' => 'Moononton Cinema',
-                'studio' => 'Studio 1',
-                'used_at' => null
+                'studio' => 'Studio 1'
             ],
             [
                 'id' => 1002,
@@ -60,11 +60,9 @@ class HistoryController extends Controller
                 'screening_time' => '20:30',
                 'ticket_count' => 3,
                 'total_price' => 180000,
-                'status' => 'pending',
                 'created_at' => $now->copy()->subHours(5),
                 'cinema' => 'Moononton Cinema',
-                'studio' => 'Studio 2',
-                'used_at' => null
+                'studio' => 'Studio 2'
             ],
             [
                 'id' => 1003,
@@ -74,11 +72,9 @@ class HistoryController extends Controller
                 'screening_time' => '18:30',
                 'ticket_count' => 1,
                 'total_price' => 60000,
-                'status' => 'completed',
                 'created_at' => $yesterday->copy()->subHours(24),
                 'cinema' => 'Moononton Cinema',
-                'studio' => 'Studio 3',
-                'used_at' => $yesterday->copy()->setHour(18)->setMinute(30)
+                'studio' => 'Studio 3'
             ],
             [
                 'id' => 1004,
@@ -88,39 +84,9 @@ class HistoryController extends Controller
                 'screening_time' => '21:00',
                 'ticket_count' => 2,
                 'total_price' => 120000,
-                'status' => 'completed',
                 'created_at' => $lastWeek->copy()->subHours(48),
                 'cinema' => 'Moononton Cinema',
-                'studio' => 'Studio 1',
-                'used_at' => $lastWeek->copy()->setHour(21)->setMinute(0)
-            ],
-            [
-                'id' => 1005,
-                'movie_title' => 'Doctor Strange in the Multiverse of Madness',
-                'movie_poster' => 'https://image.tmdb.org/t/p/w500/9Gtg2DzBhmYamXBS1hKAhiwbBKS.jpg',
-                'screening_date' => $lastMonth->format('d M Y'),
-                'screening_time' => '19:30',
-                'ticket_count' => 4,
-                'total_price' => 240000,
-                'status' => 'cancelled',
-                'created_at' => $lastMonth->copy()->subHours(72),
-                'cinema' => 'Moononton Cinema',
-                'studio' => 'Studio 2',
-                'used_at' => null
-            ],
-            [
-                'id' => 1006,
-                'movie_title' => 'Thor: Love and Thunder',
-                'movie_poster' => 'https://image.tmdb.org/t/p/w500/pIkRyD18kluFvDtWxGPB3S2R2SU.jpg',
-                'screening_date' => $lastMonth->copy()->subDays(5)->format('d M Y'),
-                'screening_time' => '20:00',
-                'ticket_count' => 2,
-                'total_price' => 120000,
-                'status' => 'completed',
-                'created_at' => $lastMonth->copy()->subDays(10),
-                'cinema' => 'Moononton Cinema',
-                'studio' => 'Studio 3',
-                'used_at' => $lastMonth->copy()->subDays(5)->setHour(20)->setMinute(0)
+                'studio' => 'Studio 1'
             ]
         ];
 

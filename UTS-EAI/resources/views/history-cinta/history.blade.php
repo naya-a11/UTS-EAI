@@ -9,61 +9,70 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <style>
         body {
-            background-color: #f8f9fa;
+            background-color: #141414;
+            color: white;
         }
         .dashboard-header {
-            background: linear-gradient(135deg, #343a40 0%, #212529 100%);
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
             color: white;
             padding: 2rem 0;
             margin-bottom: 2rem;
             border-radius: 0 0 15px 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
-        .stats-card {
-            background: white;
-            border-radius: 10px;
-            padding: 1.5rem;
+        .section-header {
             margin-bottom: 1.5rem;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
-            transition: transform 0.3s;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e50914;
+            color: white;
         }
-        .stats-card:hover {
-            transform: translateY(-5px);
+        .section-header h3 {
+            color: white;
+            font-size: 24px;
+            font-weight: 600;
+            margin: 0;
         }
-        .stats-icon {
-            font-size: 2rem;
-            margin-bottom: 1rem;
+        .section-header p {
+            color: #e1e1e1;
+            margin: 5px 0 0 0;
+            font-size: 0.9rem;
         }
-        .stats-number {
-            font-size: 1.8rem;
-            font-weight: bold;
+        .section-header p.text-muted {
+            color: #e1e1e1 !important;
+            opacity: 0.9;
         }
         .ticket-card {
-            background: white;
+            background-color: #1a1a1a;
             border-radius: 10px;
             margin-bottom: 1.5rem;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
             overflow: hidden;
             transition: transform 0.3s;
+            border: none;
+            border-left: 4px solid #e50914;
         }
         .ticket-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
         }
         .ticket-header {
             padding: 1rem;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid #2a2a2a;
             display: flex;
             justify-content: space-between;
             align-items: center;
+        }
+        .ticket-header .text-muted {
+            color: #e1e1e1 !important;
+            font-size: 0.9rem;
         }
         .ticket-body {
             padding: 1rem;
         }
         .ticket-footer {
             padding: 1rem;
-            background-color: #f8f9fa;
-            border-top: 1px solid #eee;
+            background-color: #1f1f1f;
+            border-top: 1px solid #2a2a2a;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -74,56 +83,51 @@
             object-fit: cover;
             border-radius: 5px;
         }
-        .section-header {
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid #e9ecef;
-        }
-        .status-badge {
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-weight: 500;
-        }
         .ticket-details {
-            background-color: #f8f9fa;
+            background-color: #1f1f1f;
             border-radius: 8px;
             padding: 1rem;
             margin-top: 1rem;
         }
         .ticket-details-item {
             display: flex;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
+            color: #e1e1e1;
         }
         .ticket-details-label {
-            width: 120px;
+            width: 140px;
             font-weight: 600;
-            color: #6c757d;
+            color: #e50914;
         }
         .ticket-details-value {
             flex: 1;
+            color: #ffffff;
         }
-        .active-ticket {
-            border-left: 4px solid #0d6efd;
+        .btn-outline-primary {
+            color: #e50914;
+            border-color: #e50914;
         }
-        .used-ticket {
-            border-left: 4px solid #6c757d;
+        .btn-outline-primary:hover {
+            background-color: #e50914;
+            border-color: #e50914;
+            color: white;
         }
-        .cancelled-ticket {
-            border-left: 4px solid #dc3545;
+        .btn-outline-secondary {
+            color: #999;
+            border-color: #999;
         }
-        .ticket-qr {
-            width: 100px;
-            height: 100px;
-            background-color: #e9ecef;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 5px;
-            margin: 0 auto;
+        .btn-outline-secondary:hover {
+            background-color: #999;
+            border-color: #999;
+            color: white;
         }
-        .ticket-qr i {
-            font-size: 2rem;
-            color: #6c757d;
+        .alert-info {
+            background-color: #1a1a1a;
+            border-color: #2a2a2a;
+            color: #e1e1e1;
+        }
+        .alert-info i {
+            color: #e50914;
         }
     </style>
 </head>
@@ -160,180 +164,72 @@
 
     <div class="container">
         @if(isset($orders) && count($orders) > 0)
-            <!-- Active Tickets Section -->
             <div class="section-header">
-                <h3><i class="fas fa-ticket-alt me-2"></i> Tiket Aktif</h3>
-                <p class="text-muted">Tiket yang baru dipesan dan belum digunakan</p>
+                <h3><i class="fas fa-ticket-alt me-2"></i> Riwayat Tiket</h3>
+                <p class="text-muted">Semua tiket yang telah Anda pesan</p>
             </div>
 
-            @php
-                $activeTickets = $orders->where('status', 'pending')->sortByDesc('created_at');
-            @endphp
-
-            @if($activeTickets->count() > 0)
-                <div class="row">
-                    @foreach($activeTickets as $order)
-                        <div class="col-md-6">
-                            <div class="ticket-card active-ticket">
-                                <div class="ticket-header">
-                                    <div class="d-flex align-items-center">
-                                        <img src="{{ $order->movie_poster ?? asset('images/default-movie.jpg') }}" class="movie-poster me-3" alt="{{ $order->movie_title }}">
-                                        <div>
-                                            <h5 class="mb-1">{{ $order->movie_title }}</h5>
-                                            <p class="mb-0 text-muted">
-                                                <i class="fas fa-calendar-alt me-1"></i> {{ $order->screening_date }}
-                                            </p>
-                                        </div>
-                                    </div>
+            <div class="row">
+                @foreach($orders->sortByDesc('created_at') as $order)
+                    <div class="col-md-6">
+                        <div class="ticket-card">
+                            <div class="ticket-header">
+                                <div class="d-flex align-items-center">
+                                    <img src="{{ $order->movie_poster }}" class="movie-poster me-3" alt="{{ $order->movie_title }}">
                                     <div>
-                                        <span class="status-badge bg-warning text-dark">Menunggu Pembayaran</span>
-                                    </div>
-                                </div>
-                                <div class="ticket-body">
-                                    <div class="ticket-details">
-                                        <div class="ticket-details-item">
-                                            <div class="ticket-details-label">ID Pesanan:</div>
-                                            <div class="ticket-details-value">#{{ $order->id }}</div>
-                                        </div>
-                                        <div class="ticket-details-item">
-                                            <div class="ticket-details-label">Jumlah Tiket:</div>
-                                            <div class="ticket-details-value">{{ $order->ticket_count }}</div>
-                                        </div>
-                                        <div class="ticket-details-item">
-                                            <div class="ticket-details-label">Total Harga:</div>
-                                            <div class="ticket-details-value">Rp {{ number_format($order->total_price, 0, ',', '.') }}</div>
-                                        </div>
-                                        <div class="ticket-details-item">
-                                            <div class="ticket-details-label">Bioskop:</div>
-                                            <div class="ticket-details-value">{{ $order->cinema ?? 'Moononton Cinema' }}</div>
-                                        </div>
-                                        <div class="ticket-details-item">
-                                            <div class="ticket-details-label">Studio:</div>
-                                            <div class="ticket-details-value">{{ $order->studio ?? 'Studio 1' }}</div>
-                                        </div>
-                                        <div class="ticket-details-item">
-                                            <div class="ticket-details-label">Waktu Tayang:</div>
-                                            <div class="ticket-details-value">{{ $order->screening_time ?? '19:00' }}</div>
-                                        </div>
-                                        <div class="ticket-details-item">
-                                            <div class="ticket-details-label">Tanggal Pemesanan:</div>
-                                            <div class="ticket-details-value">{{ $order->created_at->format('d M Y H:i') }}</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="ticket-footer">
-                                    <div>
-                                        <button class="btn btn-sm btn-outline-primary">Lihat Detail</button>
-                                        <button class="btn btn-sm btn-outline-danger ms-2">Batalkan Pesanan</button>
-                                    </div>
-                                    <div>
-                                        <button class="btn btn-sm btn-outline-secondary">
-                                            <i class="fas fa-download me-1"></i> Unduh Tiket
-                                        </button>
+                                        <h5 class="mb-1">{{ $order->movie_title }}</h5>
+                                        <p class="mb-0 text-muted">
+                                            <i class="fas fa-calendar-alt me-1"></i> {{ $order->screening_date }}
+                                        </p>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    @endforeach
-                </div>
-            @else
-                <div class="alert alert-info">
-                    <i class="fas fa-info-circle me-2"></i> Anda tidak memiliki tiket aktif.
-                </div>
-            @endif
-
-            <!-- Used Tickets Section -->
-            <div class="section-header mt-5">
-                <h3><i class="fas fa-history me-2"></i> Riwayat Tiket</h3>
-                <p class="text-muted">Tiket yang sudah digunakan atau dibatalkan</p>
-            </div>
-
-            @php
-                $usedTickets = $orders->where('status', 'completed')->sortByDesc('created_at');
-                $cancelledTickets = $orders->where('status', 'cancelled')->sortByDesc('created_at');
-                $allUsedTickets = $usedTickets->concat($cancelledTickets);
-            @endphp
-
-            @if($allUsedTickets->count() > 0)
-                <div class="row">
-                    @foreach($allUsedTickets as $order)
-                        <div class="col-md-6">
-                            <div class="ticket-card {{ $order->status == 'completed' ? 'used-ticket' : 'cancelled-ticket' }}">
-                                <div class="ticket-header">
-                                    <div class="d-flex align-items-center">
-                                        <img src="{{ $order->movie_poster ?? asset('images/default-movie.jpg') }}" class="movie-poster me-3" alt="{{ $order->movie_title }}">
-                                        <div>
-                                            <h5 class="mb-1">{{ $order->movie_title }}</h5>
-                                            <p class="mb-0 text-muted">
-                                                <i class="fas fa-calendar-alt me-1"></i> {{ $order->screening_date }}
-                                            </p>
-                                        </div>
+                            <div class="ticket-body">
+                                <div class="ticket-details">
+                                    <div class="ticket-details-item">
+                                        <div class="ticket-details-label">ID Pesanan:</div>
+                                        <div class="ticket-details-value">#{{ $order->id }}</div>
                                     </div>
-                                    <div>
-                                        @if($order->status == 'completed')
-                                            <span class="status-badge bg-success text-white">Selesai</span>
-                                        @elseif($order->status == 'cancelled')
-                                            <span class="status-badge bg-danger text-white">Dibatalkan</span>
-                                        @endif
+                                    <div class="ticket-details-item">
+                                        <div class="ticket-details-label">Jumlah Tiket:</div>
+                                        <div class="ticket-details-value">{{ $order->ticket_count }}</div>
                                     </div>
-                                </div>
-                                <div class="ticket-body">
-                                    <div class="ticket-details">
-                                        <div class="ticket-details-item">
-                                            <div class="ticket-details-label">ID Pesanan:</div>
-                                            <div class="ticket-details-value">#{{ $order->id }}</div>
-                                        </div>
-                                        <div class="ticket-details-item">
-                                            <div class="ticket-details-label">Jumlah Tiket:</div>
-                                            <div class="ticket-details-value">{{ $order->ticket_count }}</div>
-                                        </div>
-                                        <div class="ticket-details-item">
-                                            <div class="ticket-details-label">Total Harga:</div>
-                                            <div class="ticket-details-value">Rp {{ number_format($order->total_price, 0, ',', '.') }}</div>
-                                        </div>
-                                        <div class="ticket-details-item">
-                                            <div class="ticket-details-label">Bioskop:</div>
-                                            <div class="ticket-details-value">{{ $order->cinema ?? 'Moononton Cinema' }}</div>
-                                        </div>
-                                        <div class="ticket-details-item">
-                                            <div class="ticket-details-label">Studio:</div>
-                                            <div class="ticket-details-value">{{ $order->studio ?? 'Studio 1' }}</div>
-                                        </div>
-                                        <div class="ticket-details-item">
-                                            <div class="ticket-details-label">Waktu Tayang:</div>
-                                            <div class="ticket-details-value">{{ $order->screening_time ?? '19:00' }}</div>
-                                        </div>
-                                        <div class="ticket-details-item">
-                                            <div class="ticket-details-label">Tanggal Pemesanan:</div>
-                                            <div class="ticket-details-value">{{ $order->created_at->format('d M Y H:i') }}</div>
-                                        </div>
-                                        @if($order->status == 'completed')
-                                        <div class="ticket-details-item">
-                                            <div class="ticket-details-label">Tanggal Digunakan:</div>
-                                            <div class="ticket-details-value">{{ $order->used_at ?? $order->screening_date }}</div>
-                                        </div>
-                                        @endif
+                                    <div class="ticket-details-item">
+                                        <div class="ticket-details-label">Total Harga:</div>
+                                        <div class="ticket-details-value">Rp {{ number_format($order->total_price, 0, ',', '.') }}</div>
                                     </div>
-                                </div>
-                                <div class="ticket-footer">
-                                    <div>
-                                        <button class="btn btn-sm btn-outline-primary">Lihat Detail</button>
+                                    <div class="ticket-details-item">
+                                        <div class="ticket-details-label">Bioskop:</div>
+                                        <div class="ticket-details-value">{{ $order->cinema }}</div>
                                     </div>
-                                    <div>
-                                        <button class="btn btn-sm btn-outline-secondary">
-                                            <i class="fas fa-download me-1"></i> Unduh Tiket
-                                        </button>
+                                    <div class="ticket-details-item">
+                                        <div class="ticket-details-label">Studio:</div>
+                                        <div class="ticket-details-value">{{ $order->studio }}</div>
+                                    </div>
+                                    <div class="ticket-details-item">
+                                        <div class="ticket-details-label">Waktu Tayang:</div>
+                                        <div class="ticket-details-value">{{ $order->screening_time }}</div>
+                                    </div>
+                                    <div class="ticket-details-item">
+                                        <div class="ticket-details-label">Tanggal Pemesanan:</div>
+                                        <div class="ticket-details-value">{{ $order->created_at->format('d M Y H:i') }}</div>
                                     </div>
                                 </div>
                             </div>
+                            <div class="ticket-footer">
+                                <div>
+                                    <button class="btn btn-sm btn-outline-primary">Lihat Detail</button>
+                                </div>
+                                <div>
+                                    <button class="btn btn-sm btn-outline-secondary">
+                                        <i class="fas fa-download me-1"></i> Unduh Tiket
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                    @endforeach
-                </div>
-            @else
-                <div class="alert alert-info">
-                    <i class="fas fa-info-circle me-2"></i> Anda belum memiliki riwayat tiket.
-                </div>
-            @endif
+                    </div>
+                @endforeach
+            </div>
         @else
             <div class="alert alert-info">
                 <i class="fas fa-info-circle me-2"></i> Anda belum memiliki riwayat pemesanan tiket.
