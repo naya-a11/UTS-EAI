@@ -9,61 +9,69 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <style>
         body {
-            background-color: #f8f9fa;
+            background-color: #141414;
+            color: white;
         }
         .dashboard-header {
-            background: linear-gradient(135deg, #343a40 0%, #212529 100%);
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
             color: white;
             padding: 2rem 0;
             margin-bottom: 2rem;
             border-radius: 0 0 15px 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
-        .stats-card {
-            background: white;
-            border-radius: 10px;
-            padding: 1.5rem;
+        .section-header {
             margin-bottom: 1.5rem;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
-            transition: transform 0.3s;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e50914;
+            color: white;
         }
-        .stats-card:hover {
-            transform: translateY(-5px);
+        .section-header h3 {
+            color: white;
+            font-size: 24px;
+            font-weight: 600;
+            margin: 0;
         }
-        .stats-icon {
-            font-size: 2rem;
-            margin-bottom: 1rem;
+        .section-header p {
+            color: #e1e1e1;
+            margin: 5px 0 0 0;
+            font-size: 0.9rem;
         }
-        .stats-number {
-            font-size: 1.8rem;
-            font-weight: bold;
+        .section-header p.text-muted {
+            color: #e1e1e1 !important;
+            opacity: 0.9;
         }
         .ticket-card {
-            background: white;
+            background-color: #1a1a1a;
             border-radius: 10px;
             margin-bottom: 1.5rem;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
             overflow: hidden;
             transition: transform 0.3s;
+            border: none;
         }
         .ticket-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
         }
         .ticket-header {
             padding: 1rem;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid #2a2a2a;
             display: flex;
             justify-content: space-between;
             align-items: center;
+        }
+        .ticket-header .text-muted {
+            color: #e1e1e1 !important;
+            font-size: 0.9rem;
         }
         .ticket-body {
             padding: 1rem;
         }
         .ticket-footer {
             padding: 1rem;
-            background-color: #f8f9fa;
-            border-top: 1px solid #eee;
+            background-color: #1f1f1f;
+            border-top: 1px solid #2a2a2a;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -74,56 +82,93 @@
             object-fit: cover;
             border-radius: 5px;
         }
-        .section-header {
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid #e9ecef;
-        }
-        .status-badge {
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-weight: 500;
-        }
         .ticket-details {
-            background-color: #f8f9fa;
+            background-color: #1f1f1f;
             border-radius: 8px;
             padding: 1rem;
             margin-top: 1rem;
         }
         .ticket-details-item {
             display: flex;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
+            color: #e1e1e1;
         }
         .ticket-details-label {
-            width: 120px;
+            width: 140px;
             font-weight: 600;
-            color: #6c757d;
+            color: #e50914;
         }
         .ticket-details-value {
             flex: 1;
+            color: #ffffff;
+        }
+        .ticket-card .text-muted {
+            color: #e1e1e1 !important;
+            opacity: 0.9;
         }
         .active-ticket {
-            border-left: 4px solid #0d6efd;
+            border-left: 4px solid #e50914;
         }
         .used-ticket {
-            border-left: 4px solid #6c757d;
+            border-left: 4px solid #999;
         }
         .cancelled-ticket {
             border-left: 4px solid #dc3545;
         }
-        .ticket-qr {
-            width: 100px;
-            height: 100px;
-            background-color: #e9ecef;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 5px;
-            margin: 0 auto;
+        .status-badge {
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-weight: 500;
         }
-        .ticket-qr i {
-            font-size: 2rem;
-            color: #6c757d;
+        .status-badge.bg-warning {
+            background-color: #ffc107 !important;
+            color: #000 !important;
+            font-weight: 600;
+        }
+        .status-badge.bg-success {
+            background-color: #28a745 !important;
+            color: white !important;
+            font-weight: 600;
+        }
+        .status-badge.bg-danger {
+            background-color: #dc3545 !important;
+            color: white !important;
+            font-weight: 600;
+        }
+        .btn-outline-primary {
+            color: #e50914;
+            border-color: #e50914;
+        }
+        .btn-outline-primary:hover {
+            background-color: #e50914;
+            border-color: #e50914;
+            color: white;
+        }
+        .btn-outline-danger {
+            color: #dc3545;
+            border-color: #dc3545;
+        }
+        .btn-outline-danger:hover {
+            background-color: #dc3545;
+            border-color: #dc3545;
+            color: white;
+        }
+        .btn-outline-secondary {
+            color: #999;
+            border-color: #999;
+        }
+        .btn-outline-secondary:hover {
+            background-color: #999;
+            border-color: #999;
+            color: white;
+        }
+        .alert-info {
+            background-color: #1a1a1a;
+            border-color: #2a2a2a;
+            color: #e1e1e1;
+        }
+        .alert-info i {
+            color: #e50914;
         }
     </style>
 </head>
@@ -177,7 +222,7 @@
                             <div class="ticket-card active-ticket">
                                 <div class="ticket-header">
                                     <div class="d-flex align-items-center">
-                                        <img src="{{ $order->movie_poster ?? asset('images/default-movie.jpg') }}" class="movie-poster me-3" alt="{{ $order->movie_title }}">
+                                        <img src="{{ $order->movie_poster }}" class="movie-poster me-3" alt="{{ $order->movie_title }}">
                                         <div>
                                             <h5 class="mb-1">{{ $order->movie_title }}</h5>
                                             <p class="mb-0 text-muted">
@@ -205,15 +250,15 @@
                                         </div>
                                         <div class="ticket-details-item">
                                             <div class="ticket-details-label">Bioskop:</div>
-                                            <div class="ticket-details-value">{{ $order->cinema ?? 'Moononton Cinema' }}</div>
+                                            <div class="ticket-details-value">{{ $order->cinema }}</div>
                                         </div>
                                         <div class="ticket-details-item">
                                             <div class="ticket-details-label">Studio:</div>
-                                            <div class="ticket-details-value">{{ $order->studio ?? 'Studio 1' }}</div>
+                                            <div class="ticket-details-value">{{ $order->studio }}</div>
                                         </div>
                                         <div class="ticket-details-item">
                                             <div class="ticket-details-label">Waktu Tayang:</div>
-                                            <div class="ticket-details-value">{{ $order->screening_time ?? '19:00' }}</div>
+                                            <div class="ticket-details-value">{{ $order->screening_time }}</div>
                                         </div>
                                         <div class="ticket-details-item">
                                             <div class="ticket-details-label">Tanggal Pemesanan:</div>
@@ -261,7 +306,7 @@
                             <div class="ticket-card {{ $order->status == 'completed' ? 'used-ticket' : 'cancelled-ticket' }}">
                                 <div class="ticket-header">
                                     <div class="d-flex align-items-center">
-                                        <img src="{{ $order->movie_poster ?? asset('images/default-movie.jpg') }}" class="movie-poster me-3" alt="{{ $order->movie_title }}">
+                                        <img src="{{ $order->movie_poster }}" class="movie-poster me-3" alt="{{ $order->movie_title }}">
                                         <div>
                                             <h5 class="mb-1">{{ $order->movie_title }}</h5>
                                             <p class="mb-0 text-muted">
@@ -293,15 +338,15 @@
                                         </div>
                                         <div class="ticket-details-item">
                                             <div class="ticket-details-label">Bioskop:</div>
-                                            <div class="ticket-details-value">{{ $order->cinema ?? 'Moononton Cinema' }}</div>
+                                            <div class="ticket-details-value">{{ $order->cinema }}</div>
                                         </div>
                                         <div class="ticket-details-item">
                                             <div class="ticket-details-label">Studio:</div>
-                                            <div class="ticket-details-value">{{ $order->studio ?? 'Studio 1' }}</div>
+                                            <div class="ticket-details-value">{{ $order->studio }}</div>
                                         </div>
                                         <div class="ticket-details-item">
                                             <div class="ticket-details-label">Waktu Tayang:</div>
-                                            <div class="ticket-details-value">{{ $order->screening_time ?? '19:00' }}</div>
+                                            <div class="ticket-details-value">{{ $order->screening_time }}</div>
                                         </div>
                                         <div class="ticket-details-item">
                                             <div class="ticket-details-label">Tanggal Pemesanan:</div>
