@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\HistoryController;
+use App\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,10 @@ Route::get('/booking/{id?}', function ($id = null) {
 Route::get('/view-all-movies/{tab?}', function ($tab = 'now-showing') {
     return view('viewAll-ojan.index', ['activeTab' => $tab]);
 })->name('movies.view-all');
+
+// Payment Routes
+Route::get('/payment', [PaymentController::class, 'index'])->name('payment');
+Route::get('/payment/success', [PaymentController::class, 'success'])->name('payment.success');
 
 // Test route
 Route::get('/test-route', function () {
