@@ -13,6 +13,7 @@ Route::get('/history', function () {
     return view('history-cinta.history');
 })->name('history.index');
 
+
 Route::get('/details', function () {
     return view('movie_details-fuad.details');
 })->name('movie.details');
@@ -20,3 +21,8 @@ Route::get('/details', function () {
 Route::get('/booking', function () {
     return view('movie_details-fuad.booking');
 })->name('movie.booking');
+
+Route::get('/view-all-movies/{tab?}', function ($tab = 'now-showing') {
+    return view('viewAll-ojan.index', ['activeTab' => $tab]);
+})->name('movies.view-all');
+
