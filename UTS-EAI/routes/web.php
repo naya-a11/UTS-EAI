@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\HistoryController;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\PaymentController;
 
 /*
@@ -27,21 +28,12 @@ Route::get('/details/{id?}', function ($id = null) {
     return view('movie_details-fuad.details', ['movieId' => $id]);
 })->name('movie.details');
 
-Route::get('/booking/{id?}', function ($id = null) {
-    return view('movie_details-fuad.booking', ['movieId' => $id]);
-})->name('movie.booking');
+Route::get('/booking/{id?}', [BookingController::class, 'create'])->name('movie.booking');
+Route::post('/store-booking-data', [BookingController::class, 'storeBookingData'])->name('booking.store');
+Route::get('/payment', [PaymentController::class, 'index'])->name('payment.index');
 
 Route::get('/view-all-movies/{tab?}', function ($tab = 'now-showing') {
     return view('viewAll-ojan.index', ['activeTab' => $tab]);
 })->name('movies.view-all');
-
-// Payment Routes
-Route::get('/payment', [PaymentController::class, 'index'])->name('payment');
-Route::get('/payment/success', [PaymentController::class, 'success'])->name('payment.success');
-
-// Test route
-Route::get('/test-route', function () {
-    return 'Basic routing is working!';
-});
 
 

@@ -233,11 +233,11 @@
         <div class="row">
             <!-- Movie Details -->
             <div class="col-md-4">
-                <img src="https://via.placeholder.com/300x450" alt="Movie Poster" class="movie-poster mb-3">
-                <h4>Movie Title</h4>
-                <p class="text-muted">Cinema: Cinema Name</p>
-                <p class="text-muted">Date: DD/MM/YYYY</p>
-                <p class="text-muted">Time: HH:MM</p>
+                <img src="{{ asset($movie['poster']) }}" alt="{{ $movie['title'] }} Poster" class="movie-poster mb-3">
+                <h4>{{ $movie['title'] }}</h4>
+                <p class="text-muted">Cinema: Moononton Cinema</p>
+                <p class="text-muted">Date: {{ date('d/m/Y') }}</p>
+                <p class="text-muted">Time: {{ date('H:i') }}</p>
             </div>
 
             <!-- Payment Details -->

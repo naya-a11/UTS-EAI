@@ -155,7 +155,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/" onclick="handleMoviesClick(event)">
+                        <a class="nav-link" href="/">
                             <i class="fas fa-film"></i> Movies
                         </a>
                     </li>
@@ -172,7 +172,7 @@
     <div class="container">
         <div class="movie-details">
             <div class="mb-4">
-                <a href="#" class="back-btn" onclick="handleBackClick(event)">
+                <a href="/" class="back-btn">
                     <i class="fas fa-arrow-left me-2"></i>Back to Movies
                 </a>
             </div>
@@ -184,7 +184,7 @@
                     </div>
                     <div class="mt-4 text-center">
                         <div class="d-grid">
-                            <a href="{{ route('movie.booking', ['id' => $movieId]) }}" id="bookNowBtn" class="book-now-btn">
+                            <a href="{{ route('movie.booking', ['id' => $movieId]) }}" class="book-now-btn">
                                 <i class="fas fa-ticket-alt me-2"></i>Book Tickets
                             </a>
                         </div>
@@ -226,45 +226,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        function handleMoviesClick(event) {
-            if (window.location.pathname === '/') {
-                event.preventDefault();
-                window.location.reload();
-            }
-        }
-
-        function handleBackClick(event) {
-            event.preventDefault();
-            const movieId = '{{ $movieId }}';
-            
-            // Get the previous page from session storage or default to home
-            const previousPage = sessionStorage.getItem('previousPage') || '/';
-            
-            // If coming from booking page, go to home page
-            if (previousPage.includes('/booking/')) {
-                window.location.href = '/';
-                return;
-            }
-            
-            if (previousPage.includes('/view-all-movies')) {
-                // If coming from view all page, include the tab parameter
-                const tab = previousPage.includes('coming-soon') ? 'coming-soon' : 'now-showing';
-                window.location.href = `/view-all-movies/${tab}?movieId=${movieId}`;
-            } else {
-                // For home page or other pages
-                window.location.href = previousPage;
-            }
-        }
-
-        // Store the current page as the previous page when details page loads
-        window.onload = function() {
-            // Only store the previous page if it's not the booking page
-            const previousPage = document.referrer;
-            if (!previousPage.includes('/booking/')) {
-                sessionStorage.setItem('previousPage', previousPage);
-            }
-        };
-
         // Get movie ID from route parameter
         const movieId = '{{ $movieId }}';
 
@@ -335,10 +296,6 @@
             genresContainer.innerHTML = movie.genres.map(genre => 
                 `<span class="badge bg-dark me-2">${genre}</span>`
             ).join('');
-
-            // Update book now button
-            const bookNowBtn = document.getElementById('bookNowBtn');
-            bookNowBtn.href = `/booking/${movieId}`;
         }
 
         // Initialize movie details when page loads

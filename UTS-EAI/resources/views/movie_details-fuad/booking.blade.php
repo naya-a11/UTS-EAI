@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book Tickets - Movie Booking</title>
+    <title>Book Tickets - {{ $movie->title }}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
@@ -19,96 +19,37 @@
             padding: 2rem;
             margin-top: 2rem;
             margin-bottom: 4rem;
-            max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
         }
-        .screen {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 0.2rem;
+        .movie-info {
+            background-color: #0a0a0a;
+            border-radius: 15px;
+            padding: 2rem;
             margin-bottom: 2rem;
-            border-radius: 5px;
-            width: 100%;
-            height: 35px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px solid #e50914;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        .screen h3 {
-            margin: 0;
-            font-size: 1.2rem;
-            padding: 0;
+        .movie-info h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
         }
-        .seat {
-            width: 35px;
-            height: 35px;
-            margin: 3px;
-            border-radius: 5px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.8rem;
-        }
-        .seat.available {
-            background-color: #28a745;
+        .form-control {
+            background-color: #1a1a1a;
+            border-color: #333;
             color: white;
         }
-        .seat.selected {
+        .form-control:focus {
+            background-color: #1a1a1a;
+            border-color: #e50914;
+            color: white;
+            box-shadow: 0 0 0 0.25rem rgba(229, 9, 20, 0.25);
+        }
+        .btn-primary {
             background-color: #e50914;
-            color: white;
+            border-color: #e50914;
         }
-        .seat.occupied {
-            background-color: #333;
-            color: white;
-            cursor: not-allowed;
-            border: 1px solid #666;
-        }
-        .seat-legend {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
-            color: white;
-        }
-        .legend-item {
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
-        }
-        .legend-item .seat {
-            width: 25px;
-            height: 25px;
-            margin: 0;
-        }
-        .footer-space {
-            height: 60px;
-        }
-        .seat-row {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 5px;
-        }
-        .seat-row-label {
-            width: 30px;
-            text-align: center;
-            margin-right: 10px;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-        }
-        .seats-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 2rem;
+        .btn-primary:hover {
+            background-color: #ff0f1f;
+            border-color: #ff0f1f;
         }
         .back-btn {
             background-color: transparent;
@@ -123,31 +64,161 @@
             background-color: #e50914;
             color: white;
         }
-        .card {
-            background-color: #1f1f1f;
-            border: none;
+        .price-info {
+            background-color: #141414;
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid #333;
+        }
+        .price-info p {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        .price-info p:last-child {
+            margin-bottom: 0;
+        }
+        .price-label {
+            color: #999;
+        }
+        .price-value {
+            font-weight: 500;
+        }
+        .total-price {
+            font-size: 1.4rem !important;
+            font-weight: bold !important;
+            color: #0d6efd;
+            border-top: 1px solid #333;
+            padding-top: 1rem;
+            margin-top: 1rem !important;
+        }
+        .seat-map {
+            background-color: #0a0a0a;
+            border-radius: 15px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .screen {
+            background: linear-gradient(to bottom, #333, #1a1a1a);
+            color: #999;
+            text-align: center;
+            padding: 1rem;
+            margin-bottom: 3rem;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+        }
+        .screen::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            right: 0;
+            height: 20px;
+            background: linear-gradient(to bottom, rgba(51, 51, 51, 0.2), transparent);
+        }
+        .seats-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 2rem;
+            align-items: center;
+            padding: 1rem;
+        }
+        .seat-row {
+            display: flex;
+            gap: 10px;
+        }
+        .row-label {
+            width: 30px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .seat {
+            width: 35px;
+            height: 35px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        .seat.available {
+            background-color: #1a1a1a;
+            border: 2px solid #333;
+        }
+        .seat.available:hover {
+            background-color: #0d6efd33;
+            border-color: #0d6efd;
+            transform: scale(1.1);
+        }
+        .seat.selected {
+            background-color: #0d6efd;
+            border: 2px solid #0d6efd;
+            color: white;
+            transform: scale(1.05);
+        }
+        .seat-row .seat:nth-child(12) {
+            margin-left: 20px;
+        }
+        .btn-proceed {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            border-radius: 12px;
+        }
+        .btn-proceed.disabled {
+            background-color: #333;
+            border-color: #333;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+        .btn-proceed.enabled {
+            background-color: #0d6efd;
+            border-color: #0d6efd;
+            box-shadow: 0 4px 6px rgba(13, 110, 253, 0.2);
+        }
+        .btn-proceed.enabled:hover {
+            background-color: #0b5ed7;
+            border-color: #0b5ed7;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(13, 110, 253, 0.3);
+        }
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            padding: 1rem;
+            background-color: #141414;
             border-radius: 10px;
         }
-        .card-body {
-            color: white;
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #999;
+            font-size: 0.9rem;
         }
-        .card-title {
-            color: white;
-            border-bottom: 1px solid #333;
-            padding-bottom: 10px;
-        }
-        .proceed-btn {
-            background-color: #e50914;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            width: 100%;
-            transition: all 0.3s;
-        }
-        .proceed-btn:hover {
-            background-color: #ff0f1f;
-            color: white;
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
         }
     </style>
 </head>
@@ -161,7 +232,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/" onclick="handleMoviesClick(event)">
+                        <a class="nav-link" href="/">
                             <i class="fas fa-film"></i> Movies
                         </a>
                     </li>
@@ -175,189 +246,139 @@
         </div>
     </nav>
 
-    <div class="container-fluid">
+    <div class="container">
         <div class="booking-container">
             <div class="mb-4">
-                <a href="/details/{{ $movieId }}" class="back-btn">
+                <a href="{{ route('movie.details', ['id' => $movieId]) }}" class="back-btn">
                     <i class="fas fa-arrow-left me-2"></i>Back to Movie Details
                 </a>
             </div>
 
-            <div class="row">
-                <div class="col-md-9">
-                    <div class="seat-legend">
-                        <div class="legend-item">
-                            <div class="seat available"></div>
-                            <span>Available</span>
-                        </div>
-                        <div class="legend-item">
-                            <div class="seat selected"></div>
-                            <span>Selected</span>
-                        </div>
-                        <div class="legend-item">
-                            <div class="seat occupied"></div>
-                            <span>Occupied</span>
-                        </div>
-                    </div>
-
-                    <div class="screen">
-                        <h3>SCREEN</h3>
-                    </div>
-                    
-                    <div class="seats-container">
-                        @for($row = 'A'; $row <= 'G'; $row++)
-                            <div class="seat-row">
-                                <div class="seat-row-label">{{ $row }}</div>
-                                @for($seat = 1; $seat <= 20; $seat++)
-                                    <div class="seat available" data-seat="{{ $row }}{{ $seat }}"
-                                        @if($seat == 10) style="margin-right: 25px;" @endif>
-                                        {{ $seat }}
-                                    </div>
-                                @endfor
-                            </div>
-                        @endfor
-                    </div>
+            <div class="movie-info">
+                <h2>{{ $movie->title }}</h2>
+                <div class="price-info">
+                    <p>
+                        <span class="price-label"><i class="fas fa-tag me-2"></i>Price per seat</span>
+                        <span class="price-value">IDR 60,000</span>
+                    </p>
+                    <p>
+                        <span class="price-label"><i class="fas fa-chair me-2"></i>Selected seats</span>
+                        <span class="price-value"><span id="selectedSeatsCount">0</span> seats</span>
+                    </p>
+                    <p class="total-price">
+                        <span class="price-label">Total Amount</span>
+                        <span class="price-value">IDR <span id="totalPrice">0</span></span>
+                    </p>
                 </div>
-                
-                <div class="col-md-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Booking Summary</h5>
-                            <div class="mb-3">
-                                <h6>Movie: <span id="movie-title">Movie Title</span></h6>
-                                <h6>Date: <span id="show-date">Today</span></h6>
-                                <h6>Time: <span id="show-time">7:00 PM</span></h6>
-                            </div>
-                            <div class="mb-3">
-                                <h6>Selected Seats:</h6>
-                                <div id="selected-seats" class="mb-2"></div>
-                            </div>
-                            <div class="mb-3">
-                                <h6>Total Price: <span id="total-price">$0</span></h6>
-                            </div>
-                            <button class="proceed-btn" id="proceed-payment">
-                                Proceed to Payment
-                            </button>
+            </div>
+
+            <div class="seat-map">
+                <div class="screen">
+                    <i class="fas fa-film me-2"></i>Screen
+                </div>
+                <div class="seats-container" id="seatsContainer">
+                    @foreach(range('A', 'H') as $row)
+                        <div class="seat-row">
+                            <div class="row-label">{{ $row }}</div>
+                            @for($i = 1; $i <= 20; $i++)
+                                @php
+                                    $seatNumber = $row . $i;
+                                @endphp
+                                <div class="seat available" 
+                                     data-seat="{{ $seatNumber }}"
+                                     onclick="toggleSeat(this)">
+                                    {{ $i }}
+                                </div>
+                            @endfor
                         </div>
+                    @endforeach
+                </div>
+                <div class="legend">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #1a1a1a; border: 2px solid #333;"></div>
+                        <span>Available</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #0d6efd; border: 2px solid #0d6efd;"></div>
+                        <span>Selected</span>
                     </div>
                 </div>
             </div>
+
+            <div class="d-grid">
+                <form action="{{ route('payment.index') }}" method="GET" id="bookingForm">
+                    <input type="hidden" name="selectedSeats" id="selectedSeatsInput">
+                    <input type="hidden" name="totalPrice" id="totalPriceInput">
+                    <input type="hidden" name="movieId" value="{{ $movieId }}">
+                    <button type="submit" class="btn btn-proceed disabled" id="proceedButton" disabled>
+                        <i class="fas fa-shopping-cart me-2"></i>Proceed to Payment
+                    </button>
+                </form>
+            </div>
         </div>
-        <div class="footer-space"></div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const seats = document.querySelectorAll('.seat.available');
-            const selectedSeatsContainer = document.getElementById('selected-seats');
-            const totalPriceElement = document.getElementById('total-price');
-<<<<<<< HEAD
-            const movieTitleElement = document.getElementById('movie-title');
-=======
-            const proceedButton = document.getElementById('proceed-payment');
->>>>>>> 7e81d9970e490e3fd8a14cce17bd3fd1518f69b3
-            let selectedSeats = [];
-            const seatPrice = 40000; // Harga per kursi dalam rupiah
+        let selectedSeats = [];
+        const PRICE_PER_SEAT = 60000;
 
-            // Get movie ID from URL
-            const pathParts = window.location.pathname.split('/');
-            const movieId = pathParts[pathParts.length - 1];
+        function formatPrice(price) {
+            return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
 
-            // Movie data mapping
-            const movies = {
-                'NS001': {
-                    title: 'Pabrik Gula',
-                    poster: '{{ asset("images/movies/pabrik-gula.jpg") }}',
-                    rating: 4.0,
-                    genres: ['Horror'],
-                    duration: '1h 45min',
-                    releaseDate: 'May 1, 2024',
-                    ageRating: 'R',
-                    synopsis: 'Di sebuah pabrik gula tua yang sudah lama ditinggalkan, sekelompok remaja memutuskan untuk menghabiskan malam mereka. Namun, mereka tidak menyadari bahwa pabrik tersebut menyimpan rahasia mengerikan.'
-                },
-                'NS002': {
-                    title: 'Jumbo',
-                    poster: '{{ asset("images/movies/jumbo.jpg") }}',
-                    rating: 5.0,
-                    genres: ['Animation', 'Adventure'],
-                    duration: '1h 30min',
-                    releaseDate: 'May 15, 2024',
-                    ageRating: 'PG',
-                    synopsis: 'Don (Prince Poetiray), anak gemuk yang sering diolok-olok dengan panggilan "Jumbo" ingin membalas perbuatan anak yang suka merundungnya.'
-                },
-                'NS003': {
-                    title: 'Sinners',
-                    poster: '{{ asset("images/movies/sinners.jpg") }}',
-                    rating: 4.5,
-                    genres: ['Thriller', 'Horror'],
-                    duration: '2h 15min',
-                    releaseDate: 'June 1, 2024',
-                    ageRating: 'R',
-                    synopsis: 'Sebuah tim investigasi paranormal dipanggil untuk menyelidiki serangkaian kematian misterius di sebuah kota kecil.'
-                },
-                'NS004': {
-                    title: 'Minecraft',
-                    poster: '{{ asset("images/movies/minecraft.jpg") }}',
-                    rating: 4.5,
-                    genres: ['Action', 'Adventure'],
-                    duration: '2h 30min',
-                    releaseDate: 'June 15, 2024',
-                    ageRating: 'PG-13',
-                    synopsis: 'Steve, seorang pemain Minecraft yang terobsesi dengan permainan, secara tidak sengaja terhisap ke dalam dunia Minecraft.'
+        function updatePriceInfo() {
+            const selectedSeatsCount = document.getElementById('selectedSeatsCount');
+            const totalPrice = document.getElementById('totalPrice');
+            const total = selectedSeats.length * PRICE_PER_SEAT;
+
+            selectedSeatsCount.textContent = selectedSeats.length;
+            totalPrice.textContent = formatPrice(total);
+
+            // Update hidden form inputs
+            document.getElementById('selectedSeatsInput').value = JSON.stringify(selectedSeats);
+            document.getElementById('totalPriceInput').value = total;
+        }
+
+        function toggleSeat(seatElement) {
+            const seatNumber = seatElement.dataset.seat;
+            const index = selectedSeats.indexOf(seatNumber);
+
+            if (index === -1) {
+                if (selectedSeats.length >= 10) {
+                    alert('You can select maximum 10 seats');
+                    return;
                 }
-            };
-
-            // Update movie title
-            if (movies[movieId]) {
-                movieTitleElement.textContent = movies[movieId].title;
+                selectedSeats.push(seatNumber);
+                seatElement.classList.add('selected');
+                seatElement.classList.remove('available');
+            } else {
+                selectedSeats.splice(index, 1);
+                seatElement.classList.remove('selected');
+                seatElement.classList.add('available');
             }
 
-            seats.forEach(seat => {
-                seat.addEventListener('click', function() {
-                    if (this.classList.contains('available')) {
-                        this.classList.toggle('selected');
-                        const seatNumber = this.getAttribute('data-seat');
-                        
-                        if (this.classList.contains('selected')) {
-                            selectedSeats.push(seatNumber);
-                        } else {
-                            selectedSeats = selectedSeats.filter(s => s !== seatNumber);
-                        }
-                        
-                        updateBookingSummary();
-                    }
-                });
-            });
+            updatePriceInfo();
 
-            function updateBookingSummary() {
-                selectedSeatsContainer.innerHTML = selectedSeats.join(', ');
-                const totalPrice = selectedSeats.length * seatPrice;
-                totalPriceElement.textContent = `Rp ${totalPrice.toLocaleString()}`;
-                
-                // Enable/disable proceed button based on seat selection
-                proceedButton.disabled = selectedSeats.length === 0;
-            }
-
-            // Add event listener for proceed button
-            proceedButton.addEventListener('click', function() {
-                if (selectedSeats.length > 0) {
-                    // Store selected seats in session storage
-                    sessionStorage.setItem('selectedSeats', JSON.stringify(selectedSeats));
-                    sessionStorage.setItem('totalPrice', selectedSeats.length * seatPrice);
-                    
-                    // Redirect to payment page
-                    window.location.href = "{{ route('payment') }}";
-                }
-            });
-        });
-
-        function handleMoviesClick(event) {
-            if (window.location.pathname === '/') {
-                event.preventDefault();
-                window.location.reload();
+            const proceedButton = document.getElementById('proceedButton');
+            if (selectedSeats.length > 0) {
+                proceedButton.disabled = false;
+                proceedButton.classList.remove('disabled');
+                proceedButton.classList.add('enabled');
+            } else {
+                proceedButton.disabled = true;
+                proceedButton.classList.remove('enabled');
+                proceedButton.classList.add('disabled');
             }
         }
+
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            if (selectedSeats.length === 0) {
+                e.preventDefault();
+                alert('Please select at least one seat');
+                return;
+            }
+        });
     </script>
 </body>
 </html> 
