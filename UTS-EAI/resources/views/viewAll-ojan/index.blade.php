@@ -210,7 +210,7 @@
             <div class="tab-pane fade {{ $activeTab === 'now-showing' ? 'show active' : '' }}" id="now-showing" role="tabpanel">
                 <div class="movie-grid">
                     <!-- Movie 1 -->
-                    <div class="movie-card">
+                    <div class="movie-card" data-movie-id="NS001" data-synopsis="Di sebuah pabrik gula tua yang sudah lama ditinggalkan, sekelompok remaja memutuskan untuk menghabiskan malam mereka. Namun, mereka tidak menyadari bahwa pabrik tersebut menyimpan rahasia mengerikan. Ketika mereka mulai menghilang satu per satu, mereka harus berjuang untuk bertahan hidup melawan entitas jahat yang menghantui pabrik tersebut.">
                         <div class="movie-poster-container">
                             <img src="{{ asset('images/movies/pabrik-gula.jpg') }}" alt="Pabrik Gula" class="movie-poster">
                         </div>
@@ -229,7 +229,7 @@
                     </div>
 
                     <!-- Movie 2 -->
-                    <div class="movie-card">
+                    <div class="movie-card" data-movie-id="NS002" data-synopsis="Don (Prince Poetiray), anak gemuk yang sering diolok-olok dengan panggilan "Jumbo" ingin membalas perbuatan anak yang suka merundungnya, tapi sesosok arwah bernama Meri (Quinn Salman) meminta pertolongan Don untuk disatukan kembali dengan makam keluarganya yang dirusak.">
                         <div class="movie-poster-container">
                             <img src="{{ asset('images/movies/jumbo.jpg') }}" alt="Jumbo" class="movie-poster">
                         </div>
@@ -248,7 +248,7 @@
                     </div>
 
                     <!-- Movie 3 -->
-                    <div class="movie-card">
+                    <div class="movie-card" data-movie-id="NS003" data-synopsis="Sebuah tim investigasi paranormal dipanggil untuk menyelidiki serangkaian kematian misterius di sebuah kota kecil. Saat mereka menggali lebih dalam, mereka menemukan bahwa setiap korban memiliki dosa masa lalu yang terhubung. Mereka harus menghadapi kekuatan jahat yang memburu mereka satu per satu, sambil mencoba mengungkap kebenaran di balik kutukan tersebut.">
                         <div class="movie-poster-container">
                             <img src="{{ asset('images/movies/sinners.jpg') }}" alt="Sinners" class="movie-poster">
                         </div>
@@ -267,7 +267,7 @@
                     </div>
 
                     <!-- Movie 4 -->
-                    <div class="movie-card">
+                    <div class="movie-card" data-movie-id="NS004" data-synopsis="Steve, seorang pemain Minecraft yang terobsesi dengan permainan, secara tidak sengaja terhisap ke dalam dunia Minecraft. Di sana, dia harus bertahan hidup dari berbagai monster dan bahaya sambil mencari cara untuk kembali ke dunia nyata. Bersama dengan teman-teman barunya, dia menjelajahi dunia blocks yang penuh petualangan dan misteri.">
                         <div class="movie-poster-container">
                             <img src="{{ asset('images/movies/minecraft.jpg') }}" alt="Minecraft" class="movie-poster">
                         </div>
@@ -291,7 +291,7 @@
             <div class="tab-pane fade {{ $activeTab === 'coming-soon' ? 'show active' : '' }}" id="coming-soon" role="tabpanel">
                 <div class="movie-grid">
                     <!-- Movie 1 -->
-                    <div class="movie-card">
+                    <div class="movie-card" data-movie-id="CS001" data-synopsis="Di tengah konflik bersenjata yang memecah sebuah kota, dua keluarga dari pihak yang berbeda harus berjuang untuk bertahan hidup. Ketika anak-anak mereka terpisah dari keluarga, mereka harus mengesampingkan perbedaan mereka dan bekerja sama untuk menyelamatkan anak-anak mereka dari bahaya perang yang semakin mengancam.">
                         <div class="movie-poster-container">
                             <img src="{{ asset('images/movies/perang-kota.jpg') }}" alt="Perang Kota" class="movie-poster">
                             <div class="countdown-badge">Coming in 30 days</div>
@@ -305,7 +305,7 @@
                     </div>
 
                     <!-- Movie 2 -->
-                    <div class="movie-card">
+                    <div class="movie-card" data-movie-id="CS002" data-synopsis="Sebuah tim fotografer profesional melakukan ekspedisi ke sebuah gunung terpencil untuk mengambil foto panorama yang sempurna. Namun, mereka tidak menyadari bahwa gunung tersebut adalah tempat suci yang dilindungi oleh makhluk-makhluk mistis. Ketika mereka mulai menghilang satu per satu, mereka harus menghadapi kenyataan bahwa mereka telah mengganggu sesuatu yang seharusnya tidak mereka ganggu.">
                         <div class="movie-poster-container">
                             <img src="{{ asset('images/movies/panor.jpg') }}" alt="Panor" class="movie-poster">
                             <div class="countdown-badge">Coming in 45 days</div>
@@ -319,7 +319,7 @@
                     </div>
 
                     <!-- Movie 3 -->
-                    <div class="movie-card">
+                    <div class="movie-card" data-movie-id="CS003" data-synopsis="Lima tahun setelah kejadian di film pertama, mantan pilot tempur yang kehilangan sayapnya kembali ke medan perang untuk menyelamatkan putrinya yang diculik oleh organisasi teroris. Dengan bantuan teman-teman lamanya, dia harus menghadapi masa lalunya dan mengorbankan segalanya untuk menyelamatkan putrinya.">
                         <div class="movie-poster-container">
                             <img src="{{ asset('images/movies/sayap-sayap-patah-2.jpg') }}" alt="Sayap-sayap Patah 2" class="movie-poster">
                             <div class="countdown-badge">Coming in 60 days</div>
@@ -333,7 +333,7 @@
                     </div>
 
                     <!-- Movie 4 -->
-                    <div class="movie-card">
+                    <div class="movie-card" data-movie-id="CS004" data-synopsis="Sekelompok remaja yang selamat dari kecelakaan maut menemukan bahwa mereka telah menjadi target Death. Ketika mereka mulai mati satu per satu dengan cara yang tidak terduga, mereka harus bekerja sama untuk mengungkap pola kematian dan menemukan cara untuk mengelabui Death sebelum terlambat.">
                         <div class="movie-poster-container">
                             <img src="{{ asset('images/movies/final-destination.jpg') }}" alt="Final Destination Bloodlines" class="movie-poster">
                             <div class="countdown-badge">Coming in 90 days</div>
