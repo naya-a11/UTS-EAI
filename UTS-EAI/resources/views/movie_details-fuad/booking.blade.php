@@ -249,42 +249,49 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const seats = document.querySelectorAll('.seat');
+            const seats = document.querySelectorAll('.seat.available');
             const selectedSeatsContainer = document.getElementById('selected-seats');
             const totalPriceElement = document.getElementById('total-price');
+            const proceedButton = document.getElementById('proceed-payment');
             let selectedSeats = [];
-            const seatPrice = 10; // Price per seat
+            const seatPrice = 40000; // Harga per kursi dalam rupiah
 
             seats.forEach(seat => {
-                if (!seat.classList.contains('occupied')) {
-                    seat.addEventListener('click', function() {
+                seat.addEventListener('click', function() {
+                    if (this.classList.contains('available')) {
+                        this.classList.toggle('selected');
                         const seatNumber = this.getAttribute('data-seat');
                         
                         if (this.classList.contains('selected')) {
-                            this.classList.remove('selected');
-                            selectedSeats = selectedSeats.filter(s => s !== seatNumber);
-                        } else {
-                            this.classList.add('selected');
                             selectedSeats.push(seatNumber);
+                        } else {
+                            selectedSeats = selectedSeats.filter(s => s !== seatNumber);
                         }
                         
                         updateBookingSummary();
-                    });
-                }
+                    }
+                });
             });
 
             function updateBookingSummary() {
                 selectedSeatsContainer.innerHTML = selectedSeats.join(', ');
-                totalPriceElement.textContent = `$${selectedSeats.length * seatPrice}`;
+                const totalPrice = selectedSeats.length * seatPrice;
+                totalPriceElement.textContent = `Rp ${totalPrice.toLocaleString()}`;
+                
+                // Enable/disable proceed button based on seat selection
+                proceedButton.disabled = selectedSeats.length === 0;
             }
 
-            document.getElementById('proceed-payment').addEventListener('click', function() {
-                if (selectedSeats.length === 0) {
-                    alert('Please select at least one seat');
-                    return;
+            // Add event listener for proceed button
+            proceedButton.addEventListener('click', function() {
+                if (selectedSeats.length > 0) {
+                    // Store selected seats in session storage
+                    sessionStorage.setItem('selectedSeats', JSON.stringify(selectedSeats));
+                    sessionStorage.setItem('totalPrice', selectedSeats.length * seatPrice);
+                    
+                    // Redirect to payment page
+                    window.location.href = "{{ route('payment') }}";
                 }
-                // Here you would typically redirect to payment page
-                alert('Proceeding to payment...');
             });
         });
 
