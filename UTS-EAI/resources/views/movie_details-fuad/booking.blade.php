@@ -27,11 +27,20 @@
             background-color: #333;
             color: white;
             text-align: center;
-            padding: 1rem;
+            padding: 0.2rem;
             margin-bottom: 2rem;
             border-radius: 5px;
             width: 100%;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             border: 2px solid #e50914;
+        }
+        .screen h3 {
+            margin: 0;
+            font-size: 1.2rem;
+            padding: 0;
         }
         .seat {
             width: 35px;
@@ -101,7 +110,6 @@
             align-items: center;
             margin-top: 2rem;
         }
-<<<<<<< Updated upstream
         .back-btn {
             background-color: transparent;
             color: #e50914;
@@ -140,33 +148,6 @@
         .proceed-btn:hover {
             background-color: #ff0f1f;
             color: white;
-=======
-        .btn-primary {
-            background-color: #e50914;
-            border-color: #e50914;
-        }
-        .btn-primary:hover {
-            background-color: #ff0f1f;
-            border-color: #ff0f1f;
-        }
-        .btn-outline-dark {
-            color: white;
-            border-color: #333;
-        }
-        .btn-outline-dark:hover {
-            background-color: #333;
-            color: white;
-        }
-        .card {
-            background-color: #1a1a1a;
-            border-color: #333;
-        }
-        .card-title, .card-body h6 {
-            color: white;
-        }
-        .card-body {
-            color: #999;
->>>>>>> Stashed changes
         }
     </style>
 </head>

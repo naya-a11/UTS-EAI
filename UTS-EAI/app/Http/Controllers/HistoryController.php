@@ -15,6 +15,21 @@ class HistoryController extends Controller
         $orders = $this->getDummyData();
 
         return view('history-cinta.history', ['orders' => $orders]);
+
+    }
+    
+    private function mapStatus($status)
+    {
+        // Map database status to view status
+        $statusMap = [
+            'pending' => 'pending',
+            'paid' => 'pending',
+            'completed' => 'completed',
+            'cancelled' => 'cancelled'
+        ];
+        
+        return $statusMap[$status] ?? 'pending';
+      
     }
     
     private function getDummyData()
