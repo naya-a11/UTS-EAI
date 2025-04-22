@@ -11,37 +11,10 @@ class HistoryController extends Controller
 {
     public function index()
     {
-        $bookings = Booking::where('user_id', auth()->id())
-                          ->with(['schedule.movie'])
-                          ->orderBy('created_at', 'desc')
-                          ->get();
-        
-        // If no bookings found, use dummy data
-        if ($bookings->isEmpty()) {
-            $orders = $this->getDummyData();
-        } else {
-            // Transform bookings into the format expected by the view
-            $orders = $bookings->map(function ($booking) {
-                return [
-                    'id' => $booking->id,
-                    'movie_title' => $booking->schedule->movie->title,
-                    'movie_poster' => $booking->schedule->movie->poster_url,
-                    'screening_date' => $booking->schedule->show_time->format('d M Y'),
-                    'screening_time' => $booking->schedule->show_time->format('H:i'),
-                    'ticket_count' => $booking->number_of_tickets,
-                    'total_price' => $booking->total_price,
-                    'status' => $this->mapStatus($booking->status),
-                    'created_at' => $booking->created_at,
-                    'cinema' => 'Moononton Cinema',
-                    'studio' => 'Studio ' . $booking->schedule->theater_number,
-                    'used_at' => $booking->status === 'completed' ? $booking->schedule->show_time : null
-                ];
-            });
-        }
+        // For testing purposes, always use dummy data
+        $orders = $this->getDummyData();
 
-        return view('history-cinta.history', ['orders' => collect($orders)->map(function ($order) {
-            return is_array($order) ? (object)$order : $order;
-        })]);
+        return view('history-cinta.history', ['orders' => $orders]);
     }
     
     private function mapStatus($status)
